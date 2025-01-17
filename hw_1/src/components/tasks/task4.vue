@@ -2,8 +2,7 @@
   <div>
     <h2>Task {{ $route.params.id }}</h2>
     <div class="condition-container">
-      Condition: “Рахунок у банку” <br />
-      Вимоги:
+      Condition: “Рахунок у банку”. Вимоги:
       <ol class="condition-todo">
         <li>
           Спочатку сума дорівнює 0грн. Змінити суму у гривнях можна або
@@ -22,91 +21,147 @@
           (відображати кількість відсотків автоматично)
         </li>
       </ol>
+      При зміні суми :
+      <ul class="condition-todo">
+        <li>якщо було зняття, то суму відоражати червоним</li>
+        <li>якщо було зарахування, то суму відображати зеленим</li>
+        <li>
+          якщо сума валюти менша за 100 то відображати червоним кольором, інакше
+          - зеленим
+        </li>
+      </ul>
     </div>
     <div class="main">
-      Current balance {{ currentBalance }}₴
+      <span>
+        Current balance:
+        <span :class="[operationClass]">{{ currentBalance }}₴</span>
+      </span>
       <div>
         <label
           >Deposit:
-          <input type="number" v-model="depositValue" />
+          <input type="number" v-model.number="depositValue" />
         </label>
         <button @click="onDeposit">Deposit</button>
       </div>
       <div>
         <label
           >Withdraw:
-          <input type="number" v-model="withdrawValue" />
+          <input type="number" v-model.number="withdrawValue" />
         </label>
+
         <button @click="onWithdraw">Withdraw</button>
+        + {{ withdrawCommission.toFixed(2) }}₴ commission
       </div>
-      <span>Percantage for serice: {{}}₴</span>
-      <hr />
-      <span>Sum in dollars: {{ sumInDollars.toFixed(4) }}$</span>
-      <span>Sum in euro: {{ sumInEuro.toFixed(4) }}€</span>
-      <span v-if="errorMessage.length > 0">Error: {{ errorMessage }}</span>
+      <span>Commission for service: {{ lastOperationCommission }}₴</span>
+      <hr class="separator" />
+      <span :class="[dollarClassColor]"
+        >Sum in dollars: {{ sumInDollars.toFixed(2) }}$</span
+      >
+      <span :class="[euroClassColor]"
+        >Sum in euro: {{ sumInEuro.toFixed(2) }}€</span
+      >
+      <span v-if="errorMessage.length > 0" class="error"
+        >Error: {{ errorMessage }}</span
+      >
     </div>
   </div>
 </template>
 
 <script>
-const
+const dollarRate = 42.32
+const euroRate = 43.34
 export default {
-  name: "Task3",
+  name: "Tas4",
   data() {
     return {
-      currentBalance: 87,
+      currentBalance: 0,
       depositValue: 0,
       withdrawValue: 0,
-      dollarRate: 42.32,
-      euroRate: 43.34,
       errorMessage: "",
-      taxPercentage = 0.03
+      operationTax: 0.03,
+      operationClass: null,
+      lastOperationCommission: 0,
     }
   },
   computed: {
     sumInEuro() {
-      return this.convertToOtherCurrency(this.euroRate)
+      return this.convert(euroRate)
     },
     sumInDollars() {
-      return this.convertToOtherCurrency(this.dollarRate)
+      return this.convert(dollarRate)
     },
-    sumWithoutTax()
-      return this
-    }
+    depositCommission() {
+      return this.depositValue * this.operationTax
+    },
+    withdrawCommission() {
+      return this.withdrawValue * this.operationTax
+    },
+    euroClassColor() {
+      if (this.sumInEuro < 100) return "red"
+      return "green"
+    },
+    dollarClassColor() {
+      if (this.sumInDollars < 100) return "red"
+      return "green"
+    },
   },
   methods: {
-    convertToOtherCurrency(rate) {
-      return this.currentBalance / rate
+    convert(currencyRate) {
+      return this.currentBalance / currencyRate
     },
     onDeposit() {
-      const isValid = this.validateValue("deposit", this.depositValue)
-      if (isValid)
-        this.currentBalance += this.getSumWithoutTax(this.depositValue)
+      const errorMsg = this.validateValue(1, this.depositValue)
+      if (errorMsg) {
+        this.setErrorMessage(errorMsg)
+        return
+      }
+
+      this.currentBalance += this.depositValue - this.depositCommission
+      this.operationClass = "deposit"
+      this.lastOperationType = 1
+      this.lastOperationCommission = this.depositCommission
+      this.depositValue = 0
     },
     onWithdraw() {
-      const isValid = this.validateValue("withdraw", this.withdrawValue)
-      if (isValid)
-        this.currentBalance -= this.getSumWithoutTax(this.withdrawValue)
+      const valueWithCommission = this.withdrawValue + this.withdrawCommission
+      const errorMsg = this.validateValue(0, valueWithCommission)
+      if (errorMsg) {
+        this.setErrorMessage(errorMsg)
+        return
+      }
+      this.currentBalance -= valueWithCommission
+      this.operationClass = "withdraw"
+      this.lastOperationType = 0
+      this.lastOperationCommission = this.withdrawCommission
+      this.withdrawValue = 0
     },
     validateValue(type, value) {
-      if (value <= 0) {
-        this.setErrorMessage("Value must be a positive number")
-        return false
+      //0-withdraw
+      //1-deposit
+      this.setErrorMessage("")
+      let displayValueType
+      switch (type) {
+        case 0:
+          displayValueType = "Withdraw"
+          break
+        case 1:
+          displayValueType = "Deposit"
+          break
+        default:
+          return "Something went wrong"
       }
-      if (type === "withdraw") {
+      if (value <= 0) {
+        return `${displayValueType} value must be a positive number`
+      }
+      if (type === 0) {
         if (this.currentBalance < value) {
-          this.setErrorMessage("Value must be lte current balance")
-          return false
+          return `Not enough money on balance`
         }
       }
-      this.setErrorMessage("")
-      return true
+      return null
     },
     setErrorMessage(message) {
       this.errorMessage = message
-    },
-    getSumWithoutTax(sum) {
-      return sum * (1 - taxPercentage)
     },
   },
 }
@@ -121,5 +176,19 @@ export default {
 button {
   width: fit-content;
   font-size: 1.2rem;
+}
+.separator {
+  margin-block: 1rem;
+}
+.error {
+  color: rgb(167, 0, 0);
+}
+.withdraw,
+.red {
+  color: red;
+}
+.deposit,
+.green {
+  color: green;
 }
 </style>
