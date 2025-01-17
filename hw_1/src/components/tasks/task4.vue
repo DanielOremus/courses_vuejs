@@ -50,16 +50,14 @@
         </label>
 
         <button @click="onWithdraw">Withdraw</button>
-        + {{ withdrawCommission.toFixed(2) }}₴ commission
+        + {{ withdrawCommission }}₴ commission
       </div>
       <span>Commission for service: {{ lastOperationCommission }}₴</span>
       <hr class="separator" />
       <span :class="[dollarClassColor]"
-        >Sum in dollars: {{ sumInDollars.toFixed(2) }}$</span
+        >Sum in dollars: {{ sumInDollars }}$</span
       >
-      <span :class="[euroClassColor]"
-        >Sum in euro: {{ sumInEuro.toFixed(2) }}€</span
-      >
+      <span :class="[euroClassColor]">Sum in euro: {{ sumInEuro }}€</span>
       <span v-if="errorMessage.length > 0" class="error"
         >Error: {{ errorMessage }}</span
       >
