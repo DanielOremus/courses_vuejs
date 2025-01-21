@@ -4,13 +4,7 @@
       <li
         v-for="task in tasksList"
         :key="task.id"
-        @click="
-          $router.push({
-            name: 'task',
-            params: { id: task.id },
-            state: { task },
-          })
-        "
+        @click="onTaskClick(task.id)"
       >
         Task {{ task.id }}
       </li>
@@ -19,22 +13,23 @@
 </template>
 
 <script>
-const tasks = [
-  {
-    id: "1",
-    component: () => import("@/components/tasks/task1.vue"),
-  },
-]
+import { mapGetters } from "vuex"
 import MainMasterPage from "@/layouts/MainMasterPage.vue"
 export default {
   name: "TaskView",
   components: {
     MainMasterPage,
   },
-  computed: {
-    tasksList() {
-      return tasks
+  methods: {
+    onTaskClick(taskId) {
+      this.$router.push({ name: "task", params: { id: taskId } })
     },
+  },
+  computed: {
+    ...mapGetters("task", ["tasksList"]),
+  },
+  mounted() {
+    console.log(this.tasksList)
   },
 }
 </script>

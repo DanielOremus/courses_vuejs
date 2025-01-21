@@ -1,19 +1,20 @@
-import TaskView from "@/views/TaskView.vue"
-import Task from "@/components/tasks/index.vue"
+import TasksView from "@/views/TasksView.vue"
+import SpecificTask from "@/views/SpecificTask.vue"
 export default [
   {
     path: "/tasks",
     name: "tasks",
-    component: TaskView,
+    component: TasksView,
     meta: {
       pageTitle: "Task View",
     },
-    children: [
-      {
-        path: ":id",
-        name: "task",
-        component: Task,
-      },
-    ],
+  },
+  {
+    path: "/tasks/:id",
+    name: "task",
+    component: SpecificTask,
+    meta: {
+      pageTitle: "Task View",
+    },
   },
 ]

@@ -1,7 +1,7 @@
 <template>
   <div>
     <h2>Task {{ task.id }}</h2>
-    <!-- <component :is="taskComponent"> </component> -->
+    <component :is="taskComponent"> </component>
   </div>
 </template>
 
@@ -16,11 +16,8 @@ export default {
     },
   },
   computed: {
-    task() {
-      return this.$route.state.task
-    },
     taskComponent() {
-      return this.task.component
+      return defineAsyncComponent(() => this.task.component)
     },
   },
 }
