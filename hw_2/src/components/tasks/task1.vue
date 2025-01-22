@@ -1,27 +1,9 @@
 <template>
-  <div class="condition-container">
-    Condition: Вводиться кількість пасажирів. Вивести: <br />
-    <ul class="condition-todo">
-      <li>скільки потрібно автобусів (кожен автобус на 20 місць)</li>
-      <li>скільки пляшок води (кожному пасажиру 2 пляшки)</li>
-      <li>скільки бутербродів (кожному пасажиру 3 бутерброди)</li>
-    </ul>
-  </div>
-  <div class="main">
-    <label
-      >Passengers count:
-      <input type="number" v-model.lazy="passengersCount" />
-    </label>
-    <span>Busses count: {{ bussesCount }}</span>
-    <span>Bottles count: {{ bottlesCount }}</span>
-    <span>Sandwiches count: {{ sandwichesCount }}</span>
-  </div>
+  <div class="condition-container"></div>
+  <div class="main"></div>
 </template>
 
 <script>
-const passengersPerBus = 20
-const bottlesPerPassenger = 2
-const sandwichesPerPassenger = 3
 export default {
   name: "Task1",
   data() {
@@ -29,17 +11,7 @@ export default {
       passengersCount: 0,
     }
   },
-  computed: {
-    bussesCount() {
-      return Math.ceil(this.passengersCount / passengersPerBus)
-    },
-    bottlesCount() {
-      return this.passengersCount * bottlesPerPassenger
-    },
-    sandwichesCount() {
-      return this.passengersCount * sandwichesPerPassenger
-    },
-  },
+  computed: {},
 }
 </script>
 

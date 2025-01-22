@@ -6,7 +6,7 @@ export default [
     name: "tasks",
     component: TasksView,
     meta: {
-      pageTitle: "Task View",
+      pageTitle: "Tasks View",
     },
   },
   {

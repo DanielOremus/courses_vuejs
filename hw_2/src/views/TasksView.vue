@@ -28,9 +28,6 @@ export default {
   computed: {
     ...mapGetters("task", ["tasksList"]),
   },
-  mounted() {
-    console.log(this.tasksList)
-  },
 }
 </script>
 

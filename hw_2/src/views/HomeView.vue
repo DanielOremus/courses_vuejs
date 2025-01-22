@@ -1,7 +1,6 @@
 <template>
   <MainMasterPage>
-    <h3>Homework 2 by DO</h3>
-    <a @click="$router.push({ name: 'tasks' })">Tasks</a>
+    <h2>Homework 2 by DO</h2>
   </MainMasterPage>
 </template>
 

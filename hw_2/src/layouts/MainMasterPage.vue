@@ -2,11 +2,18 @@
   <div>
     <div class="nav">
       <h1 class="page-title">Now at: {{ $route.meta.pageTitle }}</h1>
-      <a v-if="!isHome"
-        ><span class="home-link" @click="$router.push({ name: 'home' })"
-          >Go Home</span
-        ></a
-      >
+      <div class="links-container">
+        <a v-if="!isHome"
+          ><span class="home-link" @click="$router.push({ name: 'home' })"
+            >Go Home</span
+          ></a
+        >
+        <a v-if="!isTasks"
+          ><span class="tasks-link" @click="$router.push({ name: 'tasks' })"
+            >Go to Tasks</span
+          ></a
+        >
+      </div>
     </div>
     <slot></slot>
   </div>
@@ -19,6 +26,9 @@ export default {
     isHome() {
       return this.$route.name === "home"
     },
+    isTasks() {
+      return this.$route.name === "tasks"
+    },
   },
 }
 </script>
@@ -30,7 +40,12 @@ export default {
 .page-title {
   font-size: 2rem;
 }
-.home-link {
+.links-container {
+  display: flex;
+  column-gap: 0.5rem;
+}
+.home-link,
+.tasks-link {
   font-size: 1.2rem;
   cursor: pointer;
 }

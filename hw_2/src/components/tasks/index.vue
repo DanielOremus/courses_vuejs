@@ -17,7 +17,7 @@ export default {
   },
   computed: {
     taskComponent() {
-      return defineAsyncComponent(() => this.task.component)
+      return defineAsyncComponent(this.task.component)
     },
   },
 }
