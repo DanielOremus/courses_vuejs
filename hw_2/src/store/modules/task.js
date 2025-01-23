@@ -18,10 +18,10 @@ export default {
         id: "4",
         component: () => import("@/components/tasks/task4.vue"),
       },
-      // {
-      //   id: "5",
-      //   component: () => import("@/components/tasks/task5.vue"),
-      // },
+      {
+        id: "5",
+        component: () => import("@/components/tasks/task5.vue"),
+      },
       // {
       //   id: "6",
       //   component: () => import("@/components/tasks/task6.vue"),

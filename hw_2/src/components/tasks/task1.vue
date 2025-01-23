@@ -70,6 +70,11 @@ export default {
   display: flex;
   flex-direction: column;
 }
+.condition-container {
+  ol {
+    list-style-position: inside;
+  }
+}
 .blue {
   color: blue;
 }
