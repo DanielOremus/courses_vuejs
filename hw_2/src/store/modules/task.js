@@ -22,10 +22,10 @@ export default {
         id: "5",
         component: () => import("@/components/tasks/task5.vue"),
       },
-      // {
-      //   id: "6",
-      //   component: () => import("@/components/tasks/task6.vue"),
-      // },
+      {
+        id: "6",
+        component: () => import("@/components/tasks/task6.vue"),
+      },
     ],
   }),
   getters: {
