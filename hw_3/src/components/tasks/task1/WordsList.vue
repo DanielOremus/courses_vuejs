@@ -1,11 +1,13 @@
 <template>
   <table class="words-list">
-    <tr v-for="word in getShuffledWords(words)" :key="word.id">
+    <tr v-for="word in shuffledWords" :key="word.id">
       <td>
         <word-item
           :word="word"
           :display-lang="displayLang"
-          @click="onWordSelect(word)"
+          :is-selected="isWordSelected(word.id)"
+          :is-wrong="isWordWrong(word.id)"
+          @click="onWordSelect(word.id)"
         />
       </td>
     </tr>
@@ -24,23 +26,42 @@ export default {
       type: Array,
       required: true,
     },
+    selectedWordId: {
+      type: [Number, String],
+      default: null,
+    },
     displayLang: {
       type: String,
       required: true,
     },
+    wrongWordId: {
+      type: [Number, String],
+      default: null,
+    },
   },
 
   methods: {
-    getShuffledWords(words) {
-      const resArr = [...words]
-      for (let i = words.length - 1; i > 0; i--) {
+    onWordSelect(wordId) {
+      this.$emit("select", wordId)
+    },
+    isWordSelected(currentWordId) {
+      return this.selectedWordId === currentWordId
+    },
+    isWordWrong(currentWordId) {
+      return this.wrongWordId === currentWordId
+    },
+    shuffleArray(arr) {
+      const resArr = [...arr]
+      for (let i = arr.length - 1; i > 0; i--) {
         const randIndex = Math.floor(Math.random() * (i + 1))
         ;[resArr[i], resArr[randIndex]] = [resArr[randIndex], resArr[i]]
       }
       return resArr
     },
-    onWordSelect(word) {
-      this.$emit("select", word)
+  },
+  computed: {
+    shuffledWords() {
+      return this.shuffleArray(this.words)
     },
   },
 }

@@ -1,5 +1,5 @@
 <template>
-  <div class="word-item">
+  <div class="word-item" :class="{ [selected]: !isWrong, wrong: isWrong }">
     <span>{{ word[displayLang] }}</span>
   </div>
 </template>
@@ -16,6 +16,19 @@ export default {
       type: String,
       required: true,
     },
+    isSelected: {
+      type: Boolean,
+      default: false,
+    },
+    isWrong: {
+      type: Boolean,
+      default: false,
+    },
+  },
+  computed: {
+    selected() {
+      return this.isSelected ? "selected" : "not-selected"
+    },
   },
 }
 </script>
@@ -24,6 +37,15 @@ export default {
 .word-item {
   min-width: 100px;
   text-align: center;
+  cursor: pointer;
+}
+.selected {
+  border: 1px solid rgb(0, 119, 255);
+}
+.not-selected {
   border: 1px solid grey;
+}
+.wrong {
+  border: 1px solid red;
 }
 </style>
