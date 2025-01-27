@@ -4,7 +4,7 @@ export default {
     tasksList: [
       {
         id: "1",
-        component: () => import("@/components/tasks/task1.vue"),
+        component: () => import("@/components/tasks/task1/index.vue"),
       },
     ],
   }),
