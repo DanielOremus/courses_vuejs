@@ -26,9 +26,6 @@ export default {
       return this.productData.isAvailable ? "available" : "not-available"
     },
   },
-  mounted() {
-    console.log(this.productData)
-  },
 }
 </script>
 

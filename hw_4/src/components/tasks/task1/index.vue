@@ -1,5 +1,7 @@
 <template>
-  <div class="condition-container"></div>
+  <div class="condition-container">
+    Спробуйте відтворити використовуючи відповідні компоененти
+  </div>
   <div class="main">
     <comparisons-section :lists-arr="comparisonsLists"></comparisons-section>
     <last-seen-section :list-items="productsList"></last-seen-section>
