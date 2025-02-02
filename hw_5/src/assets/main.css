@@ -25,3 +25,10 @@ input {
     background-color: hsla(160, 100%, 37%, 0.2);
   }
 }
+
+.red {
+  color: rgb(255, 71, 71);
+}
+.light-blue {
+  color: rgb(83, 158, 255);
+}
