@@ -2,9 +2,17 @@ export default {
   namespaced: true,
   state: () => ({
     tasksList: [
+      // {
+      //   id: "practice",
+      //   component: () => import("@/components/tasks/practice/index.vue"),
+      // },
       {
         id: "1",
-        component: () => import("@/components/tasks/task1.vue"),
+        component: () => import("@/components/tasks/task1/index.vue"),
+      },
+      {
+        id: "6",
+        component: () => import("@/components/tasks/task6/index.vue"),
       },
     ],
   }),
