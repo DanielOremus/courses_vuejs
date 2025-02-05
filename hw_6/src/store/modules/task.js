@@ -11,6 +11,10 @@ export default {
         component: () => import("@/components/tasks/task1/index.vue"),
       },
       {
+        id: "2",
+        component: () => import("@/components/tasks/task2/index.vue"),
+      },
+      {
         id: "6",
         component: () => import("@/components/tasks/task6/index.vue"),
       },
