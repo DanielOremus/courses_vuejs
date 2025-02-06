@@ -82,8 +82,13 @@ export default {
         .replace(/(\d{4})/g, "$1 ")
         .trim()
     },
-    getFormattedDate(date) {
-      return date.toString().replace(/(\d{2})(\d{0,2})/, "$1/$2")
+    getFormattedDate(dateStr) {
+      if (dateStr.length <= 2) {
+        return dateStr
+      }
+      dateStr = `${dateStr.slice(0, 2)}/${dateStr.slice(2, 4)}`
+      // return date.toString().replace(/(\d{2})(\d{0,2})/, "$1/$2")
+      return dateStr
     },
   },
 }
