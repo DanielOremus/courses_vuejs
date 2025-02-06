@@ -1,6 +1,6 @@
 <template>
   <MainMasterPage>
-    <h2>Homework 2 by DO</h2>
+    <h2>Homework 6 by DO</h2>
   </MainMasterPage>
 </template>
 
