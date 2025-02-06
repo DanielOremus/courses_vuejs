@@ -30,8 +30,8 @@ export default {
         return this.modelValue
       },
       set(newValue) {
-        this.isUrlCorrect = true
-        if (!this.checkUrl(newValue)) this.isUrlCorrect = false
+        if (this.modelModifiers.checkPath)
+          this.isUrlCorrect = this.checkUrl(newValue)
         this.$emit("update:modelValue", newValue)
       },
     },
