@@ -1,5 +1,5 @@
 import endpoints from "../../../endpoints"
-import { getProductsListWithCurrencyPrice } from "../helpers"
+import { getProductsListWithConvertedPrice } from "../helpers"
 export default {
   namespaced: true,
   state: () => ({
@@ -12,8 +12,11 @@ export default {
     loadingError: ({ loadingError }) => loadingError,
     productsList: (state, getters, rootState, rootGetters) => {
       const currency = rootGetters["currency/currentCurrency"]
-      let currencyRate = currency ? currency.rate : 1
-      return getProductsListWithCurrencyPrice(state.productsList, currencyRate)
+      if (!currency) return state.productsList
+      return getProductsListWithConvertedPrice(
+        state.productsList,
+        currency.rate
+      )
     },
     getProductById: (state) => (id) =>
       state.productsList.find((prod) => prod._id === id),

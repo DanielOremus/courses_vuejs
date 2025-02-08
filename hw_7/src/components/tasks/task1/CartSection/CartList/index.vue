@@ -1,23 +1,27 @@
 <template>
   <div class="cart-list">
-    <product-card
-      v-for="product in productsList"
+    <div v-if="!cartItems.length">Схоже, ви ще не додали жоден товар</div>
+    <cart-item
+      v-else
+      v-for="product in cartItems"
       :key="product._id"
       :product="product"
-    ></product-card>
+      @delete-from-cart="$emit('deleteFromCart', $event)"
+    ></cart-item>
   </div>
 </template>
 
 <script>
-import ProductCard from "./ProductCard.vue"
+import CartItem from "./CartItem.vue"
 import { mapGetters } from "vuex"
 export default {
   name: "CartList",
   components: {
-    ProductCard,
+    CartItem,
   },
+  emits: ["deleteFromCart"],
   computed: {
-    ...mapGetters("cart", ["productsList"]),
+    ...mapGetters("cart", ["cartItems"]),
   },
 }
 </script>

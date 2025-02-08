@@ -1,39 +1,28 @@
-import { getProductsListWithCurrencyPrice } from "../helpers"
+import { getProductsListWithConvertedPrice } from "../helpers"
 
 export default {
   namespaced: true,
   state: () => ({
-    productsList: [],
+    cartItems: [],
   }),
   getters: {
-    productsList: ({ productsList }) => productsList,
-    totalProductsPrice: (state, getters, rootState, rootGetters) => {
+    cartItems: (state, getters, rootState, rootGetters) => {
       const currency = rootGetters["currency/currentCurrency"]
-      let currencyRate = currency ? currency.rate : 1
-      const list = getProductsListWithCurrencyPrice(
-        state.productsList,
-        currencyRate
-      )
-      return list.reduce((acc, product) => acc + product.price, 0)
+      if (!currency) return state.cartItems
+      return getProductsListWithConvertedPrice(state.cartItems, currency.rate)
+    },
+    totalItemsPrice: (state, getters) => {
+      return getters["cartItems"].reduce((acc, item) => acc + item.price, 0)
     },
   },
   mutations: {
     addProductToCart(state, product) {
-      console.log(product)
-      console.log(state.productsList)
-
-      const isInCart = state.productsList.some(
-        (prod) => prod._id === product._id
-      )
-      console.log(isInCart)
-
-      if (!isInCart) state.productsList.push(product)
+      const isInCart = state.cartItems.some((item) => item._id === product._id)
+      if (!isInCart) state.cartItems.push(product)
     },
     deleteProductFromCart(state, prodId) {
-      const prodIndex = state.productsList.findIndex(
-        (prod) => prod._id === prodId
-      )
-      if (prodIndex > 1) state.productsList.splice(prodIndex, 1)
+      const prodIndex = state.cartItems.findIndex((item) => item._id === prodId)
+      if (prodIndex > -1) state.cartItems.splice(prodIndex, 1)
     },
   },
   actions: {

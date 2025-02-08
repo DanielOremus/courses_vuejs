@@ -21,7 +21,7 @@
 
 <script>
 import { mapActions, mapGetters } from "vuex"
-import LoadingCircle from "../general/LoadingCircle.vue"
+import LoadingCircle from "@/components/general/LoadingCircle.vue"
 import ProductsList from "./ProductsList/index.vue"
 import CurrencySelector from "./CurrencySelector.vue"
 export default {

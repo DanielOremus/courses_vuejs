@@ -1,9 +1,9 @@
-export const getCurrencyPrice = (price, rate) => {
+export const convertPrice = (price, rate) => {
   return price / rate
 }
-export const getProductsListWithCurrencyPrice = (list, rate) => {
+export const getProductsListWithConvertedPrice = (list, rate) => {
   return list.map((product) => ({
     ...product,
-    price: getCurrencyPrice(product.price, rate),
+    price: convertPrice(product.price, rate),
   }))
 }
