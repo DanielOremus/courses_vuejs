@@ -1,43 +1,49 @@
 import endpoints from "../../../endpoints"
-import { getProductsListWithCurrencyPrice } from "../helpers"
+
 export default {
   namespaced: true,
   state: () => ({
+    currenciesList: [],
     loading: false,
     loadingError: null,
-    productsList: [],
+    currentCurrency: null,
   }),
   getters: {
+    currenciesList: ({ currenciesList }) => currenciesList,
     isLoading: ({ loading }) => loading,
     loadingError: ({ loadingError }) => loadingError,
-    productsList: (state, getters, rootState, rootGetters) => {
-      const currency = rootGetters["currency/currentCurrency"]
-      let currencyRate = currency ? currency.rate : 1
-      return getProductsListWithCurrencyPrice(state.productsList, currencyRate)
-    },
-    getProductById: (state) => (id) =>
-      state.productsList.find((prod) => prod._id === id),
+    currentCurrency: ({ currentCurrency }) => currentCurrency,
   },
   mutations: {
     setProp(state, { propName, v }) {
       state[propName] = v
     },
+    setCurrenciesList(state, data) {
+      state.currenciesList = data
+    },
+    setCurrentCurrency(state, currencyObj) {
+      state.currentCurrency = currencyObj
+    },
   },
   actions: {
-    async fetchProducts({ commit, dispatch }) {
+    async fetchCurrencies({ commit, dispatch }) {
       dispatch("prepareBeforeFetch")
       try {
-        const response = await fetch(endpoints.products.fetchAll)
+        const response = await fetch(endpoints.currencies.fetchAll)
         if (!response.ok)
-          throw new Error("Error has occured while loading data")
-        const resData = await response.json()
-        const products = resData.products
-        commit("setProp", { propName: "productsList", v: products })
+          throw new Error("Error has occured while fetchind data")
+        console.log(response)
+
+        const currencies = await response.json()
+        commit("setCurrenciesList", currencies)
       } catch (error) {
         commit("setProp", { propName: "loadingError", v: error })
       } finally {
         commit("setProp", { propName: "loading", v: false })
       }
+    },
+    setCurrentCurrency({ commit }, data) {
+      commit("setCurrentCurrency", data)
     },
     setProp({ commit }, data) {
       commit("setProp", data)

@@ -1,12 +1,10 @@
 <template>
   <div class="product-item">
-    <div>
-      <img :src="product.image" alt="" />
-      <span>{{ product.title }}</span>
-    </div>
+    <span class="product-item__title">{{ product.title }}</span>
+
     <div>
       <span>{{ product.price.toFixed(2) }} {{ currentCurrency.symbol }}</span>
-      <button @click="onBuy">Купити</button>
+      <button @click="onRefuse">Відмовитись</button>
     </div>
   </div>
 </template>
@@ -15,7 +13,7 @@
 import { mapGetters } from "vuex"
 export default {
   name: "ProductCard",
-  emits: ["addToCart"],
+  emits: ["deleteFromCart"],
   props: {
     product: {
       type: Object,
@@ -26,8 +24,8 @@ export default {
     ...mapGetters("currency", ["currentCurrency"]),
   },
   methods: {
-    onBuy() {
-      this.$emit("addToCart", this.product._id)
+    onRefuse() {
+      this.$emit("deleteFromCart", this.product._id)
     },
   },
 }
@@ -52,5 +50,9 @@ export default {
     font-size: 1.2rem;
     padding: 0.2em 0.5em;
   }
+}
+.product-item__title {
+  font-size: 1.2rem;
+  font-weight: 500;
 }
 </style>

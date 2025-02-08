@@ -1,23 +1,19 @@
 <template>
   <div class="condition-container"></div>
   <div class="main">
-    {{ productsList }}
+    <list-section></list-section>
+    <cart-section></cart-section>
   </div>
 </template>
 
 <script>
-import { mapActions, mapGetters } from "vuex"
+import ListSection from "./ListSection/index.vue"
+import CartSection from "./CartSection/index.vue"
 export default {
   name: "Task1",
-  components: {},
-  computed: {
-    ...mapGetters("product", ["productsList"]),
-  },
-  methods: {
-    ...mapActions("product", ["fetchProducts"]),
-  },
-  mounted() {
-    this.fetchProducts()
+  components: {
+    ListSection,
+    CartSection,
   },
 }
 </script>
