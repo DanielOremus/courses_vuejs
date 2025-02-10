@@ -1,0 +1,22 @@
+[
+  {
+    "id": 1,
+    "title": "Ноутбуки",
+    "imgSrc": "https://i.imgur.com/YZln4uC.png"
+  },
+  {
+    "id": 2,
+    "title": "Телевізори",
+    "imgSrc": "https://i.imgur.com/iRU4GLc.png"
+  },
+  {
+    "id": 3,
+    "title": "Смартфони",
+    "imgSrc": "https://i.imgur.com/gkTMWSm.png"
+  },
+  {
+    "id": 4,
+    "title": "Складові ПК",
+    "imgSrc": "https://i.imgur.com/HZnEEPf.png"
+  }
+]
