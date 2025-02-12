@@ -1,0 +1,220 @@
+{
+  "types_list": [
+    {
+      "id": null,
+      "title": "Оберіть"
+    },
+    {
+      "id": 1,
+      "title": "Легкові"
+    },
+    {
+      "id": 2,
+      "title": "Вантажні"
+    },
+    {
+      "id": 3,
+      "title": "Автобуси"
+    }
+  ],
+  "brands_list": [
+    {
+      "id": null,
+      "title": "Оберіть",
+      "models": []
+    },
+    {
+      "id": 1,
+      "title": "Audi"
+    },
+    {
+      "id": 2,
+      "title": "BMW"
+    },
+    {
+      "id": 3,
+      "title": "MAN"
+    },
+    {
+      "id": 4,
+      "title": "Mercedes"
+    },
+    {
+      "id": 5,
+      "title": "Volkswagen"
+    },
+    {
+      "id": 6,
+      "title": "Toyota"
+    }
+  ],
+  "models_list": [
+    {
+      "id": null,
+      "brand": null,
+      "title": "Будь-яка"
+    },
+    {
+      "id": 1,
+      "brand": 1,
+      "title": "A4"
+    },
+    {
+      "id": 2,
+      "brand": 1,
+      "title": "Q7"
+    },
+    {
+      "id": 3,
+      "brand": 2,
+      "title": "X5"
+    },
+    {
+      "id": 4,
+      "brand": 2,
+      "title": "3 Series"
+    },
+    {
+      "id": 5,
+      "brand": 3,
+      "title": "TGS"
+    },
+    {
+      "id": 6,
+      "brand": 3,
+      "title": "TGX"
+    },
+    {
+      "id": 7,
+      "brand": 4,
+      "title": "E-Class"
+    },
+    {
+      "id": 8,
+      "brand": 4,
+      "title": "Actros"
+    },
+    {
+      "id": 9,
+      "brand": 5,
+      "title": "Golf"
+    },
+    {
+      "id": 10,
+      "brand": 5,
+      "title": "Passat"
+    },
+    {
+      "id": 11,
+      "brand": 6,
+      "title": "Corolla"
+    },
+    {
+      "id": 12,
+      "brand": 6,
+      "title": "Hilux"
+    },
+    {
+      "id": 13,
+      "brand": 4,
+      "title": "C-Class"
+    },
+    {
+      "id": 14,
+      "brand": 4,
+      "title": "Sprinter"
+    },
+    {
+      "id": 15,
+      "brand": 1,
+      "title": "A6"
+    },
+    {
+      "id": 16,
+      "brand": 1,
+      "title": "Q5"
+    },
+    {
+      "id": 17,
+      "brand": 2,
+      "title": "X3"
+    },
+    {
+      "id": 18,
+      "brand": 2,
+      "title": "5 Series"
+    },
+    {
+      "id": 19,
+      "brand": 3,
+      "title": "Lion's City"
+    },
+    {
+      "id": 20,
+      "brand": 3,
+      "title": "TGE"
+    },
+    {
+      "id": 21,
+      "brand": 4,
+      "title": "G-Class"
+    },
+    {
+      "id": 22,
+      "brand": 4,
+      "title": "Citan"
+    },
+    {
+      "id": 23,
+      "brand": 5,
+      "title": "Tiguan"
+    },
+    {
+      "id": 24,
+      "brand": 5,
+      "title": "Touareg"
+    },
+    {
+      "id": 25,
+      "brand": 6,
+      "title": "Camry"
+    },
+    {
+      "id": 26,
+      "brand": 6,
+      "title": "RAV4"
+    },
+    {
+      "id": 27,
+      "brand": 4,
+      "title": "GLE"
+    },
+    {
+      "id": 28,
+      "brand": 4,
+      "title": "Vito"
+    }
+  ],
+  "body_types": [
+    {
+      "id": 1,
+      "title": "Sedan"
+    },
+    {
+      "id": 2,
+      "title": "SUV"
+    },
+    {
+      "id": 3,
+      "title": "Hatchback"
+    },
+    {
+      "id": 4,
+      "title": "Pickup"
+    },
+    {
+      "id": 5,
+      "title": "Convertible"
+    }
+  ]
+}

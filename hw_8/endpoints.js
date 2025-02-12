@@ -5,4 +5,8 @@ export default Object.freeze({
   categories: {
     fetchAll: "../db/categories.json",
   },
+  cars: {
+    fetchAll: "../db/cars.json",
+    fetchFilterValues: "../db/filterValues.json",
+  },
 })

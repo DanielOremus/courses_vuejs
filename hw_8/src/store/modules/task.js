@@ -6,6 +6,10 @@ export default {
         id: "1",
         component: () => import("@/components/tasks/task1/index.vue"),
       },
+      {
+        id: "2",
+        component: () => import("@/components/tasks/task2/index.vue"),
+      },
     ],
   }),
   getters: {
