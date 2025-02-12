@@ -1,5 +1,5 @@
 import endpoints from "../../../endpoints"
-
+import { sleep } from "../helpers"
 export default {
   namespaced: true,
   state: () => ({
@@ -11,6 +11,11 @@ export default {
     productsList: ({ productsList }) => productsList,
     isLoading: ({ loading }) => loading,
     loadingError: ({ loadingError }) => loadingError,
+    productsListByCategoryId: (state) => (categoryId) => {
+      return !categoryId
+        ? state.productsList
+        : state.productsList.filter((el) => el.category.includes(categoryId))
+    },
   },
   mutations: {
     setPropValue(state, { name, value }) {
@@ -26,7 +31,9 @@ export default {
       commit("setPropValue", { name: "loadingError", value: null })
       commit("setPropValue", { name: "loading", value: true })
       try {
-        const response = await fetch(endpoints.products)
+        //Імітація затримки
+        await sleep()
+        const response = await fetch(endpoints.products.fetchAll)
         if (!response.ok) throw new Error("Error while fetching products")
         const products = await response.json()
         commit("setProductsList", products)

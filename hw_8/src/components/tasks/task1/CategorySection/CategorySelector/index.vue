@@ -4,6 +4,8 @@
       v-for="category in categoriesList"
       :key="category.id"
       :category="category"
+      :is-selected="category.id === categoryId"
+      @select-category="onSelectCategory"
     >
     </category-item>
   </div>
@@ -20,6 +22,24 @@ export default {
     categoriesList: {
       type: Array,
       default: () => [],
+    },
+    modelValue: {
+      type: [Number, String],
+    },
+  },
+  computed: {
+    categoryId: {
+      get() {
+        return this.modelValue
+      },
+      set(v) {
+        this.$emit("update:modelValue", v)
+      },
+    },
+  },
+  methods: {
+    onSelectCategory(id) {
+      this.categoryId = id
     },
   },
 }

@@ -1,6 +1,10 @@
 <template>
   <div class="category-item">
-    <div class="category-item__image-container">
+    <div
+      class="category-item__image-container"
+      :class="{ selected: isSelected }"
+      @click="onSelect"
+    >
       <img
         :src="category.imgSrc"
         alt="category-image"
@@ -19,6 +23,15 @@ export default {
     category: {
       type: Object,
       required: true,
+    },
+    isSelected: {
+      type: Boolean,
+      required: true,
+    },
+  },
+  methods: {
+    onSelect() {
+      this.$emit("selectCategory", this.category.id)
     },
   },
 }
@@ -50,5 +63,8 @@ export default {
 }
 .category-item__title {
   font-size: 1.4rem;
+}
+.selected {
+  border: 3px solid red;
 }
 </style>
