@@ -3,7 +3,7 @@
     Відтворити селектор за зразком (дані підготуйте самостійно)
   </div>
   <div class="main">
-    <filter-panel></filter-panel>
+    <filter-panel class="filter-panel"></filter-panel>
   </div>
 </template>
 
@@ -22,5 +22,8 @@ export default {
   font-size: 1.2rem;
   display: flex;
   flex-direction: column;
+}
+.filter-panel {
+  width: 250px;
 }
 </style>

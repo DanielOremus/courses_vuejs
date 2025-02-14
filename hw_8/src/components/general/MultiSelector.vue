@@ -6,8 +6,13 @@
     <div>
       <div v-for="item in items" :key="item.id">
         <label>
+          <input
+            type="checkbox"
+            class="selector__checkbox"
+            :value="item"
+            v-model="selectedItems"
+          />
           {{ item.title }}
-          <input type="checkbox" :value="item" v-model="selectedItems" />
         </label>
       </div>
     </div>

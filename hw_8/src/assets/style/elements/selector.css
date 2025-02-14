@@ -1,0 +1,28 @@
+.selector__select {
+  cursor: pointer;
+}
+.selector__select,
+.selector__input {
+  font-size: 1.1rem;
+  padding: 0.2em 0.5em;
+  outline: none;
+  border-radius: 10px;
+  width: 100%;
+}
+
+.selector__input {
+  outline: none;
+  border: 3px solid transparent;
+  transition: border 0.3s ease;
+}
+.selector__checkbox {
+  transform: scale(1.25);
+  margin-right: 0.5rem;
+}
+.selector__title {
+  font-size: 1.3rem;
+  font-weight: 500;
+}
+.selector__error {
+  border-color: red;
+}

@@ -41,10 +41,4 @@ export default {
 }
 </script>
 
-<style lang="css" scoped>
-.selector__select {
-  font-size: 1rem;
-  padding: 0.2em 0.5em;
-  width: 100%;
-}
-</style>
+<style lang="css" scoped></style>

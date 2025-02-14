@@ -63,10 +63,7 @@ export default {
       },
       vehicleYear: {
         title: "Рік",
-        value: {
-          min: null,
-          max: null,
-        },
+        value: [null, null],
       },
     }
   },

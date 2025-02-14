@@ -1,5 +1,5 @@
 @import "./base.css";
-
+@import "./elements/index.css";
 #app {
   max-width: 1280px;
   padding: 2rem;
@@ -14,10 +14,6 @@ a,
   padding: 3px 5px;
   border-radius: 5px;
   cursor: pointer;
-}
-
-input {
-  font-size: 1.1rem;
 }
 
 @media (hover: hover) {
