@@ -23,18 +23,25 @@
       :selector-title="vehicleModelSelector.title"
       v-model="vehicleModelSelector.value"
     ></item-selector>
+    <range-selector
+      :selector-title="vehicleYear.title"
+      v-model="vehicleYear.value"
+      :allowed-range="[2000, 2015]"
+    ></range-selector>
   </div>
 </template>
 
 <script>
 import ItemSelector from "@/components/general/ItemSelector.vue"
 import MultiSelector from "@/components/general/MultiSelector.vue"
+import RangeSelector from "@/components/general/RangeSelector.vue"
 import { mapActions, mapGetters } from "vuex"
 export default {
   name: "FilterPanel",
   components: {
     ItemSelector,
     MultiSelector,
+    RangeSelector,
   },
   data() {
     return {
@@ -53,6 +60,13 @@ export default {
       vehicleModelSelector: {
         title: "Модель",
         value: null,
+      },
+      vehicleYear: {
+        title: "Рік",
+        value: {
+          min: null,
+          max: null,
+        },
       },
     }
   },
