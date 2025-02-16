@@ -2,7 +2,7 @@
   {
     "id": 1,
     "name": "Ноутбук Apple MacBook Air 13",
-    "sale_price": 36999,
+    "salePrice": 36999,
     "price": 39499,
     "imgSrc": "https://i.imgur.com/Mcx1cM0.png",
     "category": [1]
@@ -10,7 +10,7 @@
   {
     "id": 2,
     "name": "Ноутбук Acer Aspire 7",
-    "sale_price": 31999,
+    "salePrice": 31999,
     "price": 37999,
     "imgSrc": "https://i.imgur.com/3njjm1k.png",
     "category": [1]
@@ -18,7 +18,7 @@
   {
     "id": 3,
     "name": "Ноутбук ASUS TUF Gaming A15",
-    "sale_price": 51999,
+    "salePrice": 51999,
     "price": 59999,
     "imgSrc": "https://i.imgur.com/uzAgNIc.png",
     "category": [1]
@@ -26,7 +26,7 @@
   {
     "id": 4,
     "name": "Ноутбук Lenovo IdeaPad Slim 5",
-    "sale_price": 26999,
+    "salePrice": 26999,
     "price": 32999,
     "imgSrc": "https://i.imgur.com/Bz6wkRz.png",
     "category": [1]
@@ -34,7 +34,7 @@
   {
     "id": 5,
     "name": "Монітор 27 Samsung Odyssey G50D",
-    "sale_price": 10299,
+    "salePrice": 10299,
     "price": 10599,
     "imgSrc": "https://i.imgur.com/qHIuY0w.png",
     "category": [2]
@@ -42,7 +42,7 @@
   {
     "id": 6,
     "name": "Монітор 24 Asus VG249QL3A",
-    "sale_price": 7149,
+    "salePrice": 7149,
     "price": 7149,
     "imgSrc": "https://i.imgur.com/0WuTKNK.png",
     "category": [2]
@@ -50,7 +50,7 @@
   {
     "id": 7,
     "name": "Монітор 27 Gigabyte GS27FC",
-    "sale_price": 6199,
+    "salePrice": 6199,
     "price": 6999,
     "imgSrc": "https://i.imgur.com/kNHIspt.png",
     "category": [2]
@@ -58,7 +58,7 @@
   {
     "id": 8,
     "name": "Монітор 27 MSI G272QPF",
-    "sale_price": 10699,
+    "salePrice": 10699,
     "price": 11099,
     "imgSrc": "https://i.imgur.com/tAzTbF0.png",
     "category": [2]
@@ -66,7 +66,7 @@
   {
     "id": 8,
     "name": "Смартфон Apple iPhone 13 Midnight",
-    "sale_price": 23999,
+    "salePrice": 23999,
     "price": 28499,
     "imgSrc": "https://i.imgur.com/TCXB81e.png",
     "category": [3]
@@ -74,7 +74,7 @@
   {
     "id": 9,
     "name": "Смартфон Samsung Galaxy S25 Ultra",
-    "sale_price": 63999,
+    "salePrice": 63999,
     "price": 67999,
     "imgSrc": "https://i.imgur.com/smyvWKI.png",
     "category": [3]
@@ -82,7 +82,7 @@
   {
     "id": 10,
     "name": "Процесор AMD Ryzen 7 7800X3D",
-    "sale_price": 24999,
+    "salePrice": 24999,
     "price": 24999,
     "imgSrc": "https://i.imgur.com/HKKluDy.png",
     "category": [4]
@@ -90,7 +90,7 @@
   {
     "id": 11,
     "name": "Відеокарта Gigabyte GeForce RTX 4070 Ti Super",
-    "sale_price": 41999,
+    "salePrice": 41999,
     "price": 44999,
     "imgSrc": "https://i.imgur.com/jnoc1kJ.png",
     "category": [4]
@@ -98,7 +98,7 @@
   {
     "id": 12,
     "name": "Кулер Noctua NH-D15 Chromax Black",
-    "sale_price": 5819,
+    "salePrice": 5819,
     "price": 5819,
     "imgSrc": "https://i.imgur.com/grIwzuA.png",
     "category": [4]

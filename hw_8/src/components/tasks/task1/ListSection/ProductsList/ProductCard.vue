@@ -6,7 +6,7 @@
     <div class="product">
       <span class="product__title"> {{ product.name }} </span>
       <span v-if="hasSale" class="product__sale-price"
-        >{{ product.sale_price }} ₴</span
+        >{{ product.salePrice }} ₴</span
       >
       <span :class="oldPriceClass">{{ product.price }} ₴</span>
     </div>
@@ -27,7 +27,7 @@ export default {
       return this.hasSale ? "product__old-price" : "product__price"
     },
     hasSale() {
-      return this.product.sale_price !== this.product.price
+      return this.product.salePrice !== this.product.price
     },
   },
 }
