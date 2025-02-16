@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="panel-container">
     <item-selector
       class="vehicle-type-selector"
       :items="filterValues.typesList"
@@ -87,4 +87,10 @@ export default {
 }
 </script>
 
-<style lang="css" scoped></style>
+<style lang="css" scoped>
+.panel-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+</style>

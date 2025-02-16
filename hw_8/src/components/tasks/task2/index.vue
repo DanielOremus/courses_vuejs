@@ -36,6 +36,11 @@ export default {
   top: 1rem;
 }
 .cars-list {
-  display: inline;
+  display: grid;
+  width: 100%;
+  grid-template-columns: 30% 30%;
+  justify-content: space-between;
+  column-gap: 3rem;
+  row-gap: 1rem;
 }
 </style>
