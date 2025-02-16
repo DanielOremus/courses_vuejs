@@ -1,4 +1,5 @@
-import { getPopulatedCarsList, sleep } from "@/store/helpers"
+import { sleep } from "@/store/helpers/index"
+import { getFilteredCarsList, getPopulatedCarsList } from "@/store/helpers/cars"
 import endpoints from "../../../../endpoints"
 
 export default {
@@ -12,6 +13,12 @@ export default {
     carsList: (state, getters, rootState, rootGetters) => {
       const filterValues = rootGetters["carFilters/filterValues"]
       return getPopulatedCarsList(state.carsList, filterValues)
+    },
+    filteredCarsList: (state, getters, rootState, rootGetters) => {
+      const selectedFilters = rootGetters["carFilters/selectedFilters"]
+      const filterValues = rootGetters["carFilters/filterValues"]
+      const cars = getFilteredCarsList(state.carsList, selectedFilters)
+      return getPopulatedCarsList(cars, filterValues)
     },
     isLoading: ({ loading }) => loading,
     loadingError: ({ loadingError }) => loadingError,

@@ -9,7 +9,7 @@
           <input
             type="checkbox"
             class="selector__checkbox"
-            :value="item"
+            :value="item.id"
             v-model="selectedItems"
           />
           {{ item.title }}

@@ -1,10 +1,15 @@
 <template>
   <div>
-    <loading-circle v-if="isLoading"></loading-circle>
-    <div v-else-if="loadingError">{{ loadingError }}</div>
+    <loading-circle v-if="isLoading" class="circle"></loading-circle>
+    <div v-else-if="loadingError">
+      {{ loadingError }}
+    </div>
+    <div v-else-if="!filteredCarsList.length" class="not-found">
+      Вибачте, ми не знайшли шуканий транспорт
+    </div>
     <template v-else>
       <car-card
-        v-for="car in carsList"
+        v-for="car in filteredCarsList"
         :key="car.id"
         :car-data="car"
       ></car-card>
@@ -23,7 +28,12 @@ export default {
     CarCard,
   },
   computed: {
-    ...mapGetters("car", ["carsList", "isLoading", "loadingError"]),
+    ...mapGetters("car", [
+      "carsList",
+      "filteredCarsList",
+      "isLoading",
+      "loadingError",
+    ]),
   },
   methods: {
     ...mapActions("car", ["fetchCars"]),
@@ -34,4 +44,12 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="css" scoped>
+.circle,
+.not-found {
+  grid-column: 1/-1;
+}
+.not-found {
+  text-align: center;
+}
+</style>

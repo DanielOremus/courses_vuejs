@@ -1,6 +1,9 @@
 <template>
   <div class="car">
-    <span class="car__title">{{ carData.brand }} {{ carData.model }}</span>
+    <span class="car__title"
+      >{{ carData.brand }} {{ carData.model }}
+      <span class="car__year">({{ carData.year }})</span></span
+    >
     <span class="car__vin">{{ carData.vin }}</span>
     <div class="car__price-container">
       <span class="price-usd">{{ carData.priceUSD }} $</span>
@@ -41,14 +44,25 @@ export default {
 .car {
   display: flex;
   flex-direction: column;
+  padding: 1rem;
+  border-radius: 10px;
+  background-color: rgb(31, 31, 31);
+  transition: background-color 0.1s ease;
+}
+.car:hover {
+  cursor: pointer;
+  background-color: rgb(52, 52, 52);
 }
 .car__title {
   font-size: 1.3rem;
   color: rgb(60, 141, 255);
 }
+.car__year {
+  color: grey;
+}
 .car__vin {
   font-size: 1rem;
-  color: rgb(85, 85, 85);
+  color: rgb(103, 103, 103);
 }
 .car__price-container {
   display: flex;

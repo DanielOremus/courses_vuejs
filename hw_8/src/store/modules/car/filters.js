@@ -3,12 +3,19 @@ import endpoints from "../../../../endpoints"
 export default {
   namespaced: true,
   state: () => ({
+    loading: false,
+    loadingError: null,
     typesList: [],
     brandsList: [],
     modelsList: [],
     bodyTypes: [],
-    loading: false,
-    loadingError: null,
+    selectedFilters: {
+      type: null,
+      bodyType: [],
+      brand: null,
+      model: null,
+      year: [null, null],
+    },
   }),
   getters: {
     filterValues: ({ typesList, brandsList, modelsList, bodyTypes }) => ({
@@ -17,6 +24,7 @@ export default {
       modelsList,
       bodyTypes,
     }),
+    selectedFilters: ({ selectedFilters }) => selectedFilters,
     isLoading: ({ loading }) => loading,
     loadingError: ({ loadingError }) => loadingError,
     modelsListByBrandId: (state) => (id) =>
@@ -33,6 +41,9 @@ export default {
       for (const filterVal in data) {
         if (state[filterVal]) state[filterVal] = data[filterVal]
       }
+    },
+    setFilterPropValue(state, { name, value }) {
+      state.selectedFilters[name] = value
     },
   },
   actions: {
@@ -52,6 +63,9 @@ export default {
       } finally {
         commit("setLoading", false)
       }
+    },
+    setFilterPropValue({ commit }, data) {
+      commit("setFilterPropValue", data)
     },
   },
 }

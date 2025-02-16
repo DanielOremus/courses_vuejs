@@ -43,30 +43,3 @@ export const createMapFromFilterValue = (filterValue) => {
     }, [])
   )
 }
-
-export const getPopulatedCarsList = (carsList, filterValues) => {
-  const { typesList, brandsList, modelsList, bodyTypes } = filterValues
-  const resArr = getPopulatedArr(carsList, [
-    {
-      name: "type",
-      refMap: createMapFromFilterValue(typesList),
-      nameFromTargetObj: "title",
-    },
-    {
-      name: "brand",
-      refMap: createMapFromFilterValue(brandsList),
-      nameFromTargetObj: "title",
-    },
-    {
-      name: "model",
-      refMap: createMapFromFilterValue(modelsList),
-      nameFromTargetObj: "title",
-    },
-    {
-      name: "bodyType",
-      refMap: createMapFromFilterValue(bodyTypes),
-      nameFromTargetObj: "title",
-    },
-  ])
-  return resArr
-}

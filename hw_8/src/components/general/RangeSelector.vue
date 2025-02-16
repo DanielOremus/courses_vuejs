@@ -50,7 +50,7 @@ export default {
   },
   data() {
     return {
-      rangeValue: this.modelValue,
+      rangeValue: [...this.modelValue],
       errors: [],
     }
   },
@@ -68,9 +68,8 @@ export default {
       if (min === "") min = null
       if (max === "") max = null
       this.checkRange(min, max)
-      if (this.errors.length) {
-        console.log(this.errors)
-      } else this.$emit("update:modelValue", [min, max])
+      if (this.errors.length) console.log(this.errors)
+      else this.$emit("update:modelValue", [min, max])
     },
     checkRange(min, max) {
       this.errors = []

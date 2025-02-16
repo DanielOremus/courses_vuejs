@@ -3,30 +3,30 @@
     <item-selector
       class="vehicle-type-selector"
       :items="filterValues.typesList"
-      :selector-title="vehicleTypeSelector.title"
-      v-model="vehicleTypeSelector.value"
+      :selector-title="typeSelectorTitle"
+      v-model="vehicleType"
     ></item-selector>
     <multi-selector
       :items="filterValues.bodyTypes"
-      :selector-title="vehicleBodyTypeSelector.title"
-      v-model="vehicleBodyTypeSelector.value"
+      :selector-title="bodyTypeSelectorTitle"
+      v-model="vehicleBodyType"
     ></multi-selector>
     <item-selector
       class="vehicle-brand-selector"
       :items="filterValues.brandsList"
-      :selector-title="vehicleBrandSelector.title"
-      v-model="vehicleBrandSelector.value"
+      :selector-title="brandSelectorTitle"
+      v-model="vehicleBrand"
     ></item-selector>
     <item-selector
       class="vehicle-model-selector"
       :items="modelsList"
-      :selector-title="vehicleModelSelector.title"
-      v-model="vehicleModelSelector.value"
+      :selector-title="modelSelectorTitle"
+      v-model="vehicleModel"
     ></item-selector>
     <range-selector
-      :selector-title="vehicleYear.title"
-      v-model="vehicleYear.value"
-      :allowed-range="[2000, 2015]"
+      :selector-title="yearSelectorTitle"
+      v-model="vehicleYear"
+      :allowed-range="allowedYearRange"
     ></range-selector>
   </div>
 </template>
@@ -45,41 +45,67 @@ export default {
   },
   data() {
     return {
-      vehicleTypeSelector: {
-        title: "Тип транспорту",
-        value: null,
-      },
-      vehicleBodyTypeSelector: {
-        title: "Тип кузова",
-        value: [],
-      },
-      vehicleBrandSelector: {
-        title: "Марка",
-        value: null,
-      },
-      vehicleModelSelector: {
-        title: "Модель",
-        value: null,
-      },
-      vehicleYear: {
-        title: "Рік",
-        value: [null, null],
-      },
+      typeSelectorTitle: "Тип транспорта",
+      bodyTypeSelectorTitle: "Тип кузова",
+      brandSelectorTitle: "Марка",
+      modelSelectorTitle: "Модель",
+      yearSelectorTitle: "Рік",
+      allowedYearRange: [2010, 2024],
     }
   },
   computed: {
-    ...mapGetters("carFilters", ["filterValues", "modelsListByBrandId"]),
+    ...mapGetters("carFilters", [
+      "filterValues",
+      "modelsListByBrandId",
+      "selectedFilters",
+    ]),
     modelsList() {
-      return this.modelsListByBrandId(this.vehicleBrandSelector.value)
+      return this.modelsListByBrandId(this.vehicleBrand)
     },
-  },
-  watch: {
-    "vehicleBrandSelector.value"() {
-      this.vehicleModelSelector.value = null
+    vehicleType: {
+      get() {
+        return this.selectedFilters.type
+      },
+      set(value) {
+        this.setFilterPropValue({ name: "type", value })
+      },
+    },
+    vehicleBodyType: {
+      get() {
+        return this.selectedFilters.bodyType
+      },
+      set(value) {
+        this.setFilterPropValue({ name: "bodyType", value })
+      },
+    },
+    vehicleBrand: {
+      get() {
+        return this.selectedFilters.brand
+      },
+      set(value) {
+        this.vehicleModel = null
+        this.setFilterPropValue({ name: "brand", value })
+      },
+    },
+    vehicleModel: {
+      get() {
+        return this.selectedFilters.model
+      },
+      set(value) {
+        this.setFilterPropValue({ name: "model", value })
+      },
+    },
+    vehicleYear: {
+      get() {
+        return this.selectedFilters.year
+      },
+      set(value) {
+        this.setFilterPropValue({ name: "year", value })
+      },
     },
   },
   methods: {
-    ...mapActions("carFilters", ["fetchFilterValues"]),
+    ...mapActions("carFilters", ["fetchFilterValues", "setFilterPropValue"]),
   },
   mounted() {
     this.fetchFilterValues()
