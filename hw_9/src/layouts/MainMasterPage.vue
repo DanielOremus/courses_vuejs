@@ -1,7 +1,9 @@
 <template>
   <div class="main-layout">
     <Header />
-    <slot></slot>
+    <div class="content">
+      <slot></slot>
+    </div>
   </div>
 </template>
 
@@ -17,6 +19,12 @@ export default {
 
 <style lang="css" scoped>
 .main-layout {
-  min-height: 100vh;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+.content {
+  flex-grow: 1;
+  display: grid;
 }
 </style>

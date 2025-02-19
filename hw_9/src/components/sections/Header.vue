@@ -61,6 +61,8 @@ export default {
   display: flex;
   justify-content: space-between;
   padding-inline: 8rem;
+  border-bottom: 2px solid hsla(160, 100%, 37%, 1);
+  background-color: rgb(15, 15, 15);
 }
 .navigation-wrapper {
   position: sticky;

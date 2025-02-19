@@ -1,0 +1,74 @@
+[
+  {
+    "id": 1,
+    "name": "Laptop1",
+    "category": 2,
+    "salePrice": 35999,
+    "price": 35999,
+    "imgSrc": "https://i.imgur.com/YZln4uC.png"
+  },
+  {
+    "id": 2,
+    "name": "Laptop2",
+    "category": 2,
+    "salePrice": 31999,
+    "price": 35999,
+    "imgSrc": "https://i.imgur.com/YZln4uC.png"
+  },
+  {
+    "id": 3,
+    "name": "Laptop3",
+    "category": 2,
+    "salePrice": 31999,
+    "price": 35999,
+    "imgSrc": "https://i.imgur.com/YZln4uC.png"
+  },
+  {
+    "id": 4,
+    "name": "Laptop4",
+    "category": 2,
+    "salePrice": 31999,
+    "price": 35999,
+    "imgSrc": "https://i.imgur.com/YZln4uC.png"
+  },
+  {
+    "id": 5,
+    "name": "Laptop5",
+    "category": 2,
+    "salePrice": 35999,
+    "price": 35999,
+    "imgSrc": "https://i.imgur.com/YZln4uC.png"
+  },
+  {
+    "id": 6,
+    "name": "TV1",
+    "category": 1,
+    "salePrice": 35999,
+    "price": 35999,
+    "imgSrc": "https://i.imgur.com/mKXv866.png"
+  },
+  {
+    "id": 7,
+    "name": "TV2",
+    "category": 1,
+    "salePrice": 31999,
+    "price": 35999,
+    "imgSrc": "https://i.imgur.com/mKXv866.png"
+  },
+  {
+    "id": 8,
+    "name": "TV3",
+    "category": 1,
+    "salePrice": 31999,
+    "price": 35999,
+    "imgSrc": "https://i.imgur.com/mKXv866.png"
+  },
+  {
+    "id": 9,
+    "name": "TV4",
+    "category": 1,
+    "salePrice": 31999,
+    "price": 35999,
+    "imgSrc": "https://i.imgur.com/mKXv866.png"
+  }
+]

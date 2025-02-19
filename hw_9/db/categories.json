@@ -1,0 +1,22 @@
+[
+  {
+    "id": 1,
+    "name": "Телевізори",
+    "imgSrc": "https://i.imgur.com/iRU4GLc.png"
+  },
+  {
+    "id": 2,
+    "name": "Ноутбуки",
+    "imgSrc": "https://i.imgur.com/YZln4uC.png"
+  },
+  {
+    "id": 3,
+    "name": "Телефони",
+    "imgSrc": "https://i.imgur.com/y1tucP3.png"
+  },
+  {
+    "id": 4,
+    "name": "Монітори",
+    "imgSrc": "https://i.imgur.com/nRqr4KE.png"
+  }
+]
