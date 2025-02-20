@@ -70,5 +70,69 @@
     "salePrice": 31999,
     "price": 35999,
     "imgSrc": "https://i.imgur.com/mKXv866.png"
+  },
+  {
+    "id": 10,
+    "name": "Phone1",
+    "category": 3,
+    "salePrice": 15999,
+    "price": 20000,
+    "imgSrc": "https://i.imgur.com/y1tucP3.png"
+  },
+  {
+    "id": 11,
+    "name": "Phone2",
+    "category": 3,
+    "salePrice": 31999,
+    "price": 35999,
+    "imgSrc": "https://i.imgur.com/y1tucP3.png"
+  },
+  {
+    "id": 12,
+    "name": "Phone3",
+    "category": 3,
+    "salePrice": 35999,
+    "price": 35999,
+    "imgSrc": "https://i.imgur.com/y1tucP3.png"
+  },
+  {
+    "id": 13,
+    "name": "Phone4",
+    "category": 3,
+    "salePrice": 31999,
+    "price": 35999,
+    "imgSrc": "https://i.imgur.com/y1tucP3.png"
+  },
+  {
+    "id": 14,
+    "name": "Monitor1",
+    "category": 4,
+    "salePrice": 15999,
+    "price": 20000,
+    "imgSrc": "https://i.imgur.com/nRqr4KE.png"
+  },
+  {
+    "id": 15,
+    "name": "Monitor2",
+    "category": 4,
+    "salePrice": 9999,
+    "price": 11030,
+    "imgSrc": "https://i.imgur.com/nRqr4KE.png"
+  },
+  {
+    "id": 16,
+    "name": "Monitor3",
+    "category": 4,
+    "salePrice": 13999,
+    "price": 13999,
+    "imgSrc": "https://i.imgur.com/nRqr4KE.png"
+  },
+  {
+    "id": 17,
+    "name": "Monitor4",
+    "category": 4,
+    "salePrice": 7899,
+    "price": 13000,
+    "imgSrc": "https://i.imgur.com/nRqr4KE.png"
   }
 ]

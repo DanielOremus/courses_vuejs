@@ -43,8 +43,8 @@ export default {
 }
 .product__img {
   width: 200px;
-  max-height: 100%;
-  object-fit: cover;
+  max-height: 150px;
+  object-fit: contain;
 }
 .product__title {
   font-size: 1.5rem;

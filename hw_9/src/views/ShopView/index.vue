@@ -7,18 +7,11 @@
 <script>
 import CategorySection from "@/components/product/CategorySection.vue"
 import MainMasterPage from "@/layouts/MainMasterPage.vue"
-import { mapActions } from "vuex"
 export default {
   name: "ShopView",
   components: {
     MainMasterPage,
     CategorySection,
-  },
-  methods: {
-    ...mapActions("product", ["fetchProducts"]),
-  },
-  mounted() {
-    this.fetchProducts()
   },
 }
 </script>
