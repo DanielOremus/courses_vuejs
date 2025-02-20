@@ -1,7 +1,7 @@
 <template>
   <div class="product">
     <img class="product__img" :src="product.imgSrc" alt="Product Image" />
-    <div>
+    <div class="product__data">
       <span class="product__title">{{ product.name }}</span>
       <div class="product__price-container">
         <span v-if="hasSale" class="product__sale-price"
@@ -11,6 +11,9 @@
         <span class="product__price" :class="{ 'has-sale': hasSale }"
           >{{ product.price }} ₴</span
         >
+      </div>
+      <div class="product__actions">
+        <button class="action-btn" @click="onEdit">Edit</button>
       </div>
     </div>
   </div>
@@ -30,6 +33,14 @@ export default {
       return this.product.price !== this.product.salePrice
     },
   },
+  methods: {
+    onEdit() {
+      this.$router.push({
+        name: "editProduct",
+        params: { productId: this.product.id },
+      })
+    },
+  },
 }
 </script>
 
@@ -46,6 +57,9 @@ export default {
   max-height: 150px;
   object-fit: contain;
 }
+.product__data {
+  position: relative;
+}
 .product__title {
   font-size: 1.5rem;
 }
@@ -56,11 +70,21 @@ export default {
 }
 .product__sale-price {
   font-size: 1.3rem;
+  line-height: 1em;
   color: rgb(255, 56, 56);
   font-weight: 500;
 }
 .product__price {
   font-size: 1.3rem;
+}
+.product__actions {
+  position: absolute;
+  bottom: 0;
+}
+.action-btn {
+  font-size: 1rem;
+  padding: 0.1em 0.8em;
+  border-radius: 5px;
 }
 .has-sale {
   font-size: 1.2rem;

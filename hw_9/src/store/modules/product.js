@@ -14,6 +14,10 @@ export default {
       ({ productsList }) =>
       (id) =>
         productsList.filter((product) => product.category == id),
+    getProductById:
+      ({ productsList }) =>
+      (id) =>
+        productsList.find((product) => product.id == id),
     isLoading: ({ loading }) => loading,
     loadingError: ({ loadingError }) => loadingError,
   },

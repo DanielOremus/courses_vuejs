@@ -37,10 +37,11 @@ export default {
 <style lang="css" scoped>
 .products-list {
   display: grid;
-  grid-template-columns: repeat(3, 500px);
+  grid-template-columns: repeat(3, minmax(200px, 1fr));
   grid-auto-rows: min-content;
   align-items: start;
   justify-content: center;
   gap: 3rem;
+  margin: 5rem;
 }
 </style>

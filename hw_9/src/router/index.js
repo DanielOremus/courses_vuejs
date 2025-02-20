@@ -25,6 +25,11 @@ const router = createRouter({
       component: () => import("@/views/ShopView/CategoryProductsView.vue"),
     },
     {
+      path: "/edit/:productId?",
+      name: "editProduct",
+      component: () => import("@/views/ProductEditView.vue"),
+    },
+    {
       path: "/payment",
       name: "paymentRules",
       component: () => import("@/views/PaymentRulesView.vue"),
