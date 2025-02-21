@@ -51,6 +51,7 @@ export default {
   border-radius: 10px;
   display: flex;
   gap: 1rem;
+  height: 100%;
 }
 .product__img {
   width: 200px;

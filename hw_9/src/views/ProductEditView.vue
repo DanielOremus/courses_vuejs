@@ -34,7 +34,7 @@ export default {
     },
   },
   methods: {
-    ...mapActions("product", ["createProduct"]),
+    ...mapActions("product", ["createProduct", "updateProductById"]),
     onCancel({ category }) {
       if (this.productId) {
         this.$router.push({
@@ -44,8 +44,12 @@ export default {
       } else this.$router.push({ name: "shop" })
     },
     onSubmit(productData) {
-      if (this.productId) this.updateProduct(productData)
+      if (this.productId) this.updateProductById(productData)
       else this.createProduct(productData)
+      this.$router.push({
+        name: "products",
+        params: { categoryId: productData.category },
+      })
     },
   },
 }

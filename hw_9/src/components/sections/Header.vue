@@ -10,7 +10,7 @@
           <ul class="nav-links">
             <li class="nav-item" v-for="(item, i) in navItems" :key="i">
               <router-link
-                :active-class="item.activeClass"
+                :exact-active-class="item.activeClass"
                 :to="{ name: item.routeName }"
               >
                 {{ item.title }}

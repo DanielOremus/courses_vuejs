@@ -31,6 +31,15 @@ export default {
     setLoadingError(state, err) {
       state.loadingError = err
     },
+    updateProductById(state, productData) {
+      const prodIndex = state.productsList.findIndex(
+        (prod) => prod.id == productData.id
+      )
+      state.productsList[prodIndex] = { ...productData }
+    },
+    createProduct(state, data) {
+      state.productsList.push({ id: Date.now(), ...data })
+    },
   },
   actions: {
     async fetchProducts({ commit }) {
@@ -47,6 +56,12 @@ export default {
       } finally {
         commit("setLoading", false)
       }
+    },
+    updateProductById({ commit }, data) {
+      commit("updateProductById", data)
+    },
+    createProduct({ commit }, data) {
+      commit("createProduct", data)
     },
   },
 }
