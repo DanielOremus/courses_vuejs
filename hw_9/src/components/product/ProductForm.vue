@@ -21,27 +21,38 @@
         <item-selector
           class="category-selector"
           selector-title="Категорія: "
-          :items="categories"
+          :items="categoriesList"
           v-model="productData.category"
         />
       </label>
-      <button type="submit" class="submit-btn">{{ submitBtnTitle }}</button>
+      <div class="actions-container">
+        <button class="cancel-btn" @click="onCancel">Відмінити</button>
+        <button type="submit" class="submit-btn">{{ submitBtnTitle }}</button>
+      </div>
     </form>
   </div>
 </template>
 
 <script>
-import { mapGetters } from "vuex"
 import ItemSelector from "../general/ItemSelector.vue"
 export default {
   name: "ProductForm",
   components: {
     ItemSelector,
   },
+  emits: ["form-submit", "form-cancel"],
   props: {
     productId: {
       type: [Number, String],
       default: null,
+    },
+    initProductData: {
+      type: Object,
+      default: () => ({}),
+    },
+    categoriesList: {
+      type: Array,
+      default: () => [],
     },
   },
   data() {
@@ -50,20 +61,20 @@ export default {
     }
   },
   computed: {
-    ...mapGetters("product", ["getProductById"]),
-    ...mapGetters("category", ["categoriesList"]),
-    categories() {
-      return [{ id: null, name: "Оберіть" }, ...this.categoriesList]
-    },
     submitBtnTitle() {
       return this.productData.id ? "Зберегти" : "Створити"
     },
   },
   methods: {
-    onSubmit() {},
+    onSubmit() {
+      this.$emit("form-submit", this.productData)
+    },
+    onCancel() {
+      this.$emit("form-cancel", this.productData)
+    },
   },
   created() {
-    this.productData = { ...this.getProductById(this.productId) }
+    this.productData = { ...this.initProductData }
   },
 }
 </script>
@@ -81,7 +92,18 @@ export default {
     gap: 3rem;
   }
 }
-.submit-btn {
+.product-form input,
+:deep(.selector__select) {
+  width: 300px;
+}
+.actions-container {
+  margin-top: 1rem;
+  display: flex;
+  gap: 1rem;
+}
+.submit-btn,
+.cancel-btn {
+  width: 50%;
   font-size: inherit;
 }
 .category-selector {
@@ -89,8 +111,5 @@ export default {
   font-size: 1.1rem;
   display: flex;
   justify-content: space-between;
-}
-:deep(.selector__select) {
-  width: 222px;
 }
 </style>

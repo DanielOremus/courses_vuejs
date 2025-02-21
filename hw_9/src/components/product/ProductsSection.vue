@@ -42,6 +42,10 @@ export default {
   align-items: start;
   justify-content: center;
   gap: 3rem;
-  margin: 5rem;
+}
+@media only screen and (max-width: 1200px) {
+  .products-list {
+    grid-template-columns: repeat(2, minmax(200px, 1fr));
+  }
 }
 </style>

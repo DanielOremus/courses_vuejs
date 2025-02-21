@@ -1,14 +1,11 @@
 <template>
   <main-master-page>
-    <div class="page-wrapper">
-      <div class="back-arrow" @click="onBack">
-        <img
-          width="50"
-          height="50"
-          src="@/assets/icons/arrow-left-bold.svg?url"
-          alt=""
-        />
-      </div>
+    <div class="content-wrapper">
+      <router-link :to="{ name: 'shop' }">
+        <div class="arrow-icon-container">
+          <i class="bi bi-arrow-left-square-fill arrow"></i>
+        </div>
+      </router-link>
       <products-section class="products-section" />
     </div>
   </main-master-page>
@@ -33,17 +30,24 @@ export default {
 
 <style lang="css" scoped>
 .products-section {
-  margin: 4rem 2rem;
+  margin: 4rem;
 }
-.page-wrapper {
+.content-wrapper {
   position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
-.back-arrow {
+.arrow-icon-container {
   position: absolute;
   top: 1rem;
   left: 1rem;
-  img {
-    cursor: pointer;
-  }
+  color: rgb(75, 75, 75);
+  font-size: 1.6rem;
+  transition: color 0.15s ease-out;
+  cursor: pointer;
+}
+.arrow-icon-container:hover {
+  color: rgb(119, 119, 119);
 }
 </style>

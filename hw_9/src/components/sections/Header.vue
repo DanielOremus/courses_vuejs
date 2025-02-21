@@ -40,6 +40,11 @@ export default {
           title: "Магазин",
         },
         {
+          routeName: "editProduct",
+          activeClass: "active",
+          title: "Створити продукт",
+        },
+        {
           routeName: "paymentRules",
           activeClass: "active",
           title: "Правила оплати",
@@ -83,7 +88,7 @@ export default {
   color: hsla(160, 100%, 37%, 1);
 }
 .main-navigation {
-  flex-basis: 60%;
+  flex-basis: 70%;
   font-size: 1.25rem;
 }
 .nav-links {
