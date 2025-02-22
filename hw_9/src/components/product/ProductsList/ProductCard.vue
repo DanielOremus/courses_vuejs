@@ -1,19 +1,22 @@
 <template>
   <div class="product">
     <img class="product__img" :src="product.imgSrc" alt="Product Image" />
-    <div class="product__data">
-      <span class="product__title">{{ product.name }}</span>
-      <div class="product__price-container">
-        <span v-if="hasSale" class="product__sale-price"
-          >{{ product.salePrice }} ₴</span
-        >
+    <div class="container">
+      <div class="product__data">
+        <span class="product__title">{{ product.name }}</span>
+        <div class="product__price-container">
+          <span v-if="hasSale" class="product__sale-price"
+            >{{ product.salePrice }} ₴</span
+          >
 
-        <span class="product__price" :class="{ 'has-sale': hasSale }"
-          >{{ product.price }} ₴</span
-        >
+          <span class="product__price" :class="{ 'has-sale': hasSale }"
+            >{{ product.price }} ₴</span
+          >
+        </div>
       </div>
       <div class="product__actions">
-        <button class="action-btn" @click="onEdit">Edit</button>
+        <button class="action-btn" @click="onEdit">Редагувати</button>
+        <button class="action-btn" @click="onDelete">Видалити</button>
       </div>
     </div>
   </div>
@@ -35,10 +38,10 @@ export default {
   },
   methods: {
     onEdit() {
-      this.$router.push({
-        name: "editProduct",
-        params: { productId: this.product.id },
-      })
+      this.$emit("product-edit", this.product.id)
+    },
+    onDelete() {
+      this.$emit("product-delete", this.product.id)
     },
   },
 }
@@ -50,7 +53,7 @@ export default {
   background-color: rgb(48, 48, 48);
   border-radius: 10px;
   display: flex;
-  gap: 1rem;
+  gap: 1.5rem;
   height: 100%;
 }
 .product__img {
@@ -78,14 +81,19 @@ export default {
 .product__price {
   font-size: 1.3rem;
 }
-.product__actions {
-  position: absolute;
-  bottom: 0;
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 .action-btn {
   font-size: 1rem;
   padding: 0.1em 0.8em;
   border-radius: 5px;
+  width: 100%;
+}
+.product__actions {
+  margin-top: 1rem;
 }
 .has-sale {
   font-size: 1.2rem;

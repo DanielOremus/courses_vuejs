@@ -40,6 +40,11 @@ export default {
     createProduct(state, data) {
       state.productsList.push({ id: Date.now(), ...data })
     },
+    deleteProductById(state, productId) {
+      state.productsList = state.productsList.filter(
+        (prod) => prod.id != productId
+      )
+    },
   },
   actions: {
     async fetchProducts({ commit }) {
@@ -59,6 +64,9 @@ export default {
     },
     updateProductById({ commit }, data) {
       commit("updateProductById", data)
+    },
+    deleteProductById({ commit }, productId) {
+      commit("deleteProductById", productId)
     },
     createProduct({ commit }, data) {
       commit("createProduct", data)

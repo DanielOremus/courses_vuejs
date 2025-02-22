@@ -6,6 +6,8 @@
       v-else
       class="products-list"
       :products="getProductsByCategoryId(currentCategoryId)"
+      @product-edit="onEditProduct"
+      @product-delete="onDeleteProduct"
     />
   </div>
 </template>
@@ -13,7 +15,7 @@
 <script>
 import ProgressCircle from "@/components/general/ProgressCircle.vue"
 import ProductsList from "@/components/product/ProductsList/index.vue"
-import { mapGetters } from "vuex"
+import { mapGetters, mapActions } from "vuex"
 export default {
   name: "ProductsSection",
   components: {
@@ -29,6 +31,18 @@ export default {
     ]),
     currentCategoryId() {
       return this.$route.params.categoryId
+    },
+  },
+  methods: {
+    ...mapActions("product", ["deleteProductById"]),
+    onEditProduct(productId) {
+      this.$router.push({
+        name: "editProduct",
+        params: { productId },
+      })
+    },
+    onDeleteProduct(productId) {
+      this.deleteProductById(productId)
     },
   },
 }
