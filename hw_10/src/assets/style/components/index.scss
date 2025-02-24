@@ -1,0 +1,24 @@
+.action-btn {
+  color: white;
+  font-size: 1.1rem;
+  min-width: 7em;
+  height: 2em;
+  border: none;
+  outline: none;
+  border-radius: 10px;
+  box-shadow: 0 2px 15px 1px rgba(0, 0, 0, 0.588);
+  transition: background 0.2s ease;
+  cursor: pointer;
+}
+.edit-btn {
+  background-color: rgb(241, 84, 0);
+  &:hover {
+    background-color: rgb(243, 109, 31);
+  }
+}
+.delete-btn {
+  background-color: rgb(216, 0, 0);
+  &:hover {
+    background-color: rgb(235, 41, 41);
+  }
+}

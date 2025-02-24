@@ -1,0 +1,18 @@
+.users-table {
+  border-spacing: 0;
+}
+.users-table td,
+:deep(.user td) {
+  padding-block: 0.6rem;
+}
+
+.users-table th {
+  font-weight: 500;
+  font-size: 1.25rem;
+  min-width: 300px;
+  height: 40px;
+  background-color: rgb(10, 10, 10);
+}
+.loading-circle {
+  margin: 0 auto;
+}
