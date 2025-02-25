@@ -1,6 +1,9 @@
 <template>
   <div class="users-table-wrapper">
     <users-table />
+    <router-link :to="{ name: 'userEdit' }"
+      >Створити нового користувача</router-link
+    >
   </div>
 </template>
 

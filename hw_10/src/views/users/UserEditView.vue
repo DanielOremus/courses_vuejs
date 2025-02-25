@@ -4,7 +4,11 @@
       <h1 class="form-title">
         {{ formTitle }}
       </h1>
-      <user-edit-form :user-init-data="currentItem" />
+      <user-edit-form
+        :user-init-data="currentItem"
+        @edit-save="onEdit"
+        @edit-cancel="returnToList"
+      />
     </div>
   </main-master-page>
 </template>
@@ -22,7 +26,7 @@ export default {
     UserEditForm,
   },
   computed: {
-    ...mapState(useUsersStore, ["currentItem"]),
+    ...mapState(useUsersStore, ["currentItem", "responseError"]),
     userId() {
       return this.$route.params.id
     },
@@ -31,7 +35,22 @@ export default {
     },
   },
   methods: {
-    ...mapActions(useUsersStore, ["fetchItemById"]),
+    ...mapActions(useUsersStore, [
+      "fetchItemById",
+      "clearCurrentItem",
+      "updateItemById",
+      "addItem",
+    ]),
+    async onEdit(userData) {
+      if (this.userId) await this.updateItemById({ ...userData })
+      else await this.addItem({ ...userData })
+      if (this.responseError) alert(this.responseError)
+      else this.returnToList()
+    },
+    returnToList() {
+      this.clearCurrentItem()
+      this.$router.push({ name: "users" })
+    },
   },
   mounted() {
     this.fetchItemById(this.userId)
@@ -47,7 +66,8 @@ export default {
   translate: -50% -50%;
   min-width: 40rem;
   padding: 2rem;
-  background-color: black;
+  background-color: var(--card-background);
+  border-radius: 15px;
 }
 .form-title {
   font-weight: 500;

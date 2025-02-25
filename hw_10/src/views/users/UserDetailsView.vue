@@ -2,7 +2,7 @@
   <main-master-page>
     <div class="user-card">
       <h1 class="user-card__title">Користувач</h1>
-      <div v-if="isLoading" class="loading-circle-wrapper">
+      <div v-if="fetchLoading" class="loading-circle-wrapper">
         <loading-circle />
       </div>
       <div v-else-if="responseError">{{ responseError }}</div>
@@ -44,7 +44,11 @@ export default {
     }
   },
   computed: {
-    ...mapState(useUsersStore, ["currentItem", "isLoading", "responseError"]),
+    ...mapState(useUsersStore, [
+      "currentItem",
+      "fetchLoading",
+      "responseError",
+    ]),
     userId() {
       return this.$route.params.id
     },
@@ -74,7 +78,7 @@ export default {
   min-width: 600px;
   padding: 3rem;
   padding-top: 2rem;
-  background-color: rgb(14, 14, 14);
+  background-color: var(--card-background);
   border-radius: 15px;
 }
 .user-card__title {

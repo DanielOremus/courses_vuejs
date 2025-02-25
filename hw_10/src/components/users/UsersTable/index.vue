@@ -5,25 +5,29 @@
       <th>Вік</th>
       <th>Дії</th>
     </tr>
-    <tr v-if="isLoading">
-      <td colspan="3">
+    <tr v-if="fetchLoading">
+      <td colspan="3" :class="colorClass(0)">
         <loading-circle class="loading-circle" />
       </td>
     </tr>
     <tr v-else-if="responseError">
-      <td colspan="3">{{ responseError }}</td>
+      <td colspan="3" class="error-text">{{ responseError }}</td>
     </tr>
-    <user-row
-      v-else
-      v-for="(user, i) in itemsList"
-      :key="user.id"
-      :user="user"
-      class="user"
-      :class="colorClass(i)"
-      @user-edit="onEdit(user.id)"
-      @user-delete="onDelete(user.id)"
-      @click.prevent="onDetails($event, user.id)"
-    />
+    <template v-else>
+      <tr v-if="!itemsList.length" :class="colorClass(0)">
+        <td colspan="3" class="no-users-text">Немає користувачів :(</td>
+      </tr>
+      <user-row
+        v-for="(user, i) in itemsList"
+        :key="user.id"
+        :user="user"
+        class="user"
+        :class="colorClass(i)"
+        @user-edit="onEdit(user.id)"
+        @user-delete="onDelete(user.id)"
+        @click.prevent="onDetails($event, user.id)"
+      />
+    </template>
   </table>
 </template>
 
@@ -40,7 +44,7 @@ export default {
     LoadingCircle,
   },
   computed: {
-    ...mapState(useUsersStore, ["itemsList", "isLoading", "responseError"]),
+    ...mapState(useUsersStore, ["itemsList", "fetchLoading", "responseError"]),
   },
   methods: {
     ...mapActions(useUsersStore, ["fetchItems", "deleteItemById"]),

@@ -16,7 +16,7 @@ export const useTasksStore = defineStore("tasks", {
     ...generalActions,
     async fetchTasksByUserId(userId) {
       this.responseError = null
-      this.isLoading = true
+      this.fetchLoading = true
       try {
         await sleep()
         const tasks = CollectionManager.getItemsByFieldValue(
@@ -29,7 +29,7 @@ export const useTasksStore = defineStore("tasks", {
       } catch (error) {
         this.responseError = error
       } finally {
-        this.isLoading = false
+        this.fetchLoading = false
       }
     },
   },

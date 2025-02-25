@@ -22,7 +22,9 @@ export default {
         return this.modelValue
       },
       set(v) {
-        if (this.modelModifiers.number) v = parseFloat(v)
+        if (this.modelModifiers.number) {
+          v = v === "" ? null : parseFloat(v)
+        }
         this.$emit("update:modelValue", v)
       },
     },

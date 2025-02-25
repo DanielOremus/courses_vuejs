@@ -8,6 +8,12 @@
       Рік народження:
       <my-input class="input" type="number" v-model.number="user.yearOfBirth" />
     </label>
+    <div class="actions-container">
+      <button class="action-btn cancel-btn" @click="onCancel">Відміна</button>
+      <button class="action-btn save-btn" @click="onSave">
+        {{ btnTitle }}
+      </button>
+    </div>
   </form>
 </template>
 
@@ -29,9 +35,22 @@ export default {
       user: {},
     }
   },
+  computed: {
+    btnTitle() {
+      return this.userInitData ? "Зберегти" : "Створити"
+    },
+  },
   watch: {
     userInitData(newValue) {
       this.user = { ...newValue }
+    },
+  },
+  methods: {
+    onCancel() {
+      this.$emit("edit-cancel")
+    },
+    onSave() {
+      this.$emit("edit-save", this.user)
     },
   },
 }
@@ -47,5 +66,12 @@ export default {
   display: block;
   margin-top: 0.5rem;
   width: 100%;
+}
+.actions-container {
+  display: flex;
+  gap: 1.5rem;
+}
+.actions-container .action-btn {
+  flex-grow: 1;
 }
 </style>

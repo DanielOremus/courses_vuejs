@@ -41,6 +41,11 @@ export default {
           activeClass: "active",
           title: "Користувачі",
         },
+        {
+          routeName: "tasks",
+          activeClass: "active",
+          title: "Завдання",
+        },
       ],
     }
   },
