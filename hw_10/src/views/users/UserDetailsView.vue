@@ -1,7 +1,10 @@
 <template>
   <main-master-page>
     <div class="user-card">
-      <loading-circle v-if="isLoading" />
+      <h1 class="user-card__title">Користувач</h1>
+      <div v-if="isLoading" class="loading-circle-wrapper">
+        <loading-circle />
+      </div>
       <div v-else-if="responseError">{{ responseError }}</div>
       <template v-else>
         <h2>Ім'я: {{ currentItem?.name }}</h2>
@@ -50,11 +53,10 @@ export default {
     ...mapActions(useUsersStore, ["fetchItemById"]),
     ...mapActions(useTasksStore, ["fetchTasksByUserId"]),
   },
-  async created() {
+  async mounted() {
     if (this.userId) {
       this.fetchItemById(this.userId)
-      const userTasks = await this.fetchTasksByUserId(this.userId)
-      console.log(userTasks)
+      this.userTasks = await this.fetchTasksByUserId(this.userId)
     }
   },
 }
@@ -71,7 +73,16 @@ export default {
   translate: -50% -50%;
   min-width: 600px;
   padding: 3rem;
+  padding-top: 2rem;
   background-color: rgb(14, 14, 14);
   border-radius: 15px;
+}
+.user-card__title {
+  margin-bottom: 1rem;
+  text-align: center;
+}
+.loading-circle-wrapper {
+  width: fit-content;
+  margin: 0 auto;
 }
 </style>

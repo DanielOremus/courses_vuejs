@@ -1,4 +1,5 @@
 import { defineStore } from "pinia"
+import { sleep } from "./helpers"
 import {
   state as generalState,
   getters,
@@ -22,6 +23,8 @@ export const useTasksStore = defineStore("tasks", {
           this.collectionName,
           { fieldName: "responsible", fieldValue: userId }
         )
+        console.log(tasks)
+
         return tasks
       } catch (error) {
         this.responseError = error

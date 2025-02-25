@@ -1,14 +1,20 @@
 <template>
   <main-master-page>
-    <user-edit-form :user-init-data="currentUser"></user-edit-form>
+    <div class="user-form-wrapper">
+      <h1 class="form-title">
+        {{ formTitle }}
+      </h1>
+      <user-edit-form :user-init-data="currentItem" />
+    </div>
   </main-master-page>
 </template>
 
 <script>
 import { useUsersStore } from "@/stores/users"
-import { mapState } from "pinia"
+import { mapActions, mapState } from "pinia"
 import UserEditForm from "@/components/users/UserEditForm.vue"
 import MainMasterPage from "@/layouts/MainMasterPage.vue"
+import LoadingCircle from "@/components/general/LoadingCircle.vue"
 export default {
   name: "UserEditView",
   components: {
@@ -16,15 +22,36 @@ export default {
     UserEditForm,
   },
   computed: {
-    ...mapState(useUsersStore, ["getUserById"]),
-    currentUserId() {
+    ...mapState(useUsersStore, ["currentItem"]),
+    userId() {
       return this.$route.params.id
     },
-    currentUser() {
-      return !this.currentUserId ? null : this.getUserById(this.currentUserId)
+    formTitle() {
+      return this.userId ? "Редагування" : "Створення"
     },
+  },
+  methods: {
+    ...mapActions(useUsersStore, ["fetchItemById"]),
+  },
+  mounted() {
+    this.fetchItemById(this.userId)
   },
 }
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.user-form-wrapper {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  translate: -50% -50%;
+  min-width: 40rem;
+  padding: 2rem;
+  background-color: black;
+}
+.form-title {
+  font-weight: 500;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+</style>
