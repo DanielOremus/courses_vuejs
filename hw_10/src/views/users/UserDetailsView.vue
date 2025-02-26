@@ -2,9 +2,7 @@
   <main-master-page>
     <div class="user-card">
       <h1 class="user-card__title">Користувач</h1>
-      <div v-if="fetchLoading" class="loading-circle-wrapper">
-        <loading-circle />
-      </div>
+      <loading-circle v-if="fetchLoading" />
       <div v-else-if="responseError">{{ responseError }}</div>
       <template v-else>
         <h2>Ім'я: {{ currentItem?.name }}</h2>
@@ -84,9 +82,5 @@ export default {
 .user-card__title {
   margin-bottom: 1rem;
   text-align: center;
-}
-.loading-circle-wrapper {
-  width: fit-content;
-  margin: 0 auto;
 }
 </style>

@@ -7,7 +7,7 @@
     </tr>
     <tr v-if="fetchLoading">
       <td colspan="3" :class="colorClass(0)">
-        <loading-circle class="loading-circle" />
+        <loading-circle />
       </td>
     </tr>
     <tr v-else-if="responseError">

@@ -43,5 +43,6 @@ export default {
 .actions {
   display: flex;
   justify-content: flex-end;
+  gap: 1rem;
 }
 </style>

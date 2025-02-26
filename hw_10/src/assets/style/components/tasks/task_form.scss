@@ -1,0 +1,17 @@
+.task-form {
+  display: grid;
+  gap: 1.8rem;
+  font-size: 1.3rem;
+}
+.my-textarea {
+  display: block;
+  margin-top: 0.5rem;
+  width: 100%;
+}
+.actions-container {
+  display: flex;
+  gap: 1.5rem;
+}
+.actions-container .action-btn {
+  width: 50%;
+}

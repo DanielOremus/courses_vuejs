@@ -1,13 +1,10 @@
 <template>
-  <form class="user-form" @submit.prevent="onSubmit">
+  <form class="task-form" @submit.prevent="onSubmit">
     <label class="label">
-      Ім'я:
-      <my-input class="input" type="text" v-model="user.name" />
+      Контент:
+      <my-textarea v-model="task.content" />
     </label>
-    <label class="label">
-      Рік народження:
-      <my-input class="input" type="number" v-model.number="user.yearOfBirth" />
-    </label>
+
     <div class="actions-container">
       <button class="action-btn cancel-btn" @click="onCancel">Відміна</button>
       <button class="action-btn save-btn" @click="onSave">
@@ -21,16 +18,17 @@
 </template>
 
 <script>
-import MyInput from "../ui/MyInput.vue"
+import MyTextarea from "../ui/MyTextarea.vue"
 import LoadingCircle from "../general/LoadingCircle.vue"
+import tasks from "@/router/tasks"
 export default {
-  name: "UserEditForm",
+  name: "TaskEditForm",
   components: {
-    MyInput,
+    MyTextarea,
     LoadingCircle,
   },
   props: {
-    userInitData: {
+    taskInitData: {
       type: Object,
       default: null,
     },
@@ -41,20 +39,19 @@ export default {
   },
   data() {
     return {
-      user: {
-        name: "",
-        yearOfBirth: null,
+      task: {
+        content: " ",
       },
     }
   },
   computed: {
     btnTitle() {
-      return this.userInitData ? "Зберегти" : "Створити"
+      return this.taskInitData ? "Зберегти" : "Створити"
     },
   },
   watch: {
-    userInitData(newValue) {
-      this.user = { ...newValue }
+    taskInitData(newValue) {
+      this.task = { ...newValue }
     },
   },
   methods: {
@@ -62,12 +59,12 @@ export default {
       this.$emit("edit-cancel")
     },
     onSave() {
-      this.$emit("edit-save", this.user)
+      this.$emit("edit-save", this.task)
     },
   },
 }
 </script>
 
 <style lang="scss" scoped>
-@import "@/assets/style/components/users/user_form.scss";
+@import "@/assets/style/components/tasks/task_form.scss";
 </style>

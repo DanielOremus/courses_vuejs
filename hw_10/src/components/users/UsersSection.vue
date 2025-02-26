@@ -2,7 +2,9 @@
   <div class="users-table-wrapper">
     <users-table />
     <router-link :to="{ name: 'userEdit' }"
-      >Створити нового користувача</router-link
+      ><span class="new-user-caption"
+        >Створити нового користувача</span
+      ></router-link
     >
   </div>
 </template>
@@ -27,5 +29,8 @@ export default {
   width: fit-content;
   margin: 0 auto;
   margin-top: 3rem;
+}
+.new-user-caption {
+  font-size: 1.1rem;
 }
 </style>

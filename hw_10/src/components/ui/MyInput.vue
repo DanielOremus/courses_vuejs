@@ -32,17 +32,4 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
-.my-input {
-  font-size: inherit;
-  outline: none;
-  border: 2px solid rgb(131, 131, 131);
-  background-color: transparent;
-  color: white;
-  padding: 1rem;
-  border-radius: 5px;
-}
-.my-input:focus {
-  border: 2px solid white;
-}
-</style>
+<style lang="scss" scoped></style>

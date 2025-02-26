@@ -1,11 +1,13 @@
 <template>
   <main-master-page>
+    <loading-overlay v-if="fetchLoading" />
     <div class="user-form-wrapper">
       <h1 class="form-title">
         {{ formTitle }}
       </h1>
       <user-edit-form
         :user-init-data="currentItem"
+        :action-loading="actionLoading"
         @edit-save="onEdit"
         @edit-cancel="returnToList"
       />
@@ -18,15 +20,21 @@ import { useUsersStore } from "@/stores/users"
 import { mapActions, mapState } from "pinia"
 import UserEditForm from "@/components/users/UserEditForm.vue"
 import MainMasterPage from "@/layouts/MainMasterPage.vue"
-import LoadingCircle from "@/components/general/LoadingCircle.vue"
+import LoadingOverlay from "@/components/general/LoadingOverlay.vue"
 export default {
   name: "UserEditView",
   components: {
     MainMasterPage,
     UserEditForm,
+    LoadingOverlay,
   },
   computed: {
-    ...mapState(useUsersStore, ["currentItem", "responseError"]),
+    ...mapState(useUsersStore, [
+      "currentItem",
+      "responseError",
+      "actionLoading",
+      "fetchLoading",
+    ]),
     userId() {
       return this.$route.params.id
     },
@@ -53,7 +61,7 @@ export default {
     },
   },
   mounted() {
-    this.fetchItemById(this.userId)
+    if (this.userId) this.fetchItemById(this.userId)
   },
 }
 </script>
