@@ -63,8 +63,10 @@ export default {
     if (this.userId) this.fetchItemById(this.userId)
   },
   beforeRouteLeave() {
-    const usersStore = useUsersStore()
-    usersStore.clearCurrentItem()
+    if (this.userId) {
+      const usersStore = useUsersStore()
+      usersStore.clearCurrentItem()
+    }
   },
 }
 </script>

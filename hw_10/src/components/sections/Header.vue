@@ -37,6 +37,11 @@ export default {
           title: "Головна",
         },
         {
+          routeName: "tasksManager",
+          activeClass: "active",
+          title: "Розподілювач завдань",
+        },
+        {
           routeName: "users",
           activeClass: "active",
           title: "Користувачі",

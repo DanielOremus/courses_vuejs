@@ -20,7 +20,6 @@
 <script>
 import MyTextarea from "../ui/MyTextarea.vue"
 import LoadingCircle from "../general/LoadingCircle.vue"
-import tasks from "@/router/tasks"
 export default {
   name: "TaskEditForm",
   components: {

@@ -8,6 +8,8 @@
       <task-edit-form
         :action-loading="actionLoading"
         :task-init-data="currentItem"
+        @edit-cancel="onEditCancel"
+        @edit-save="onEditSave"
       />
     </div>
   </main-master-page>
@@ -31,6 +33,7 @@ export default {
       "actionLoading",
       "fetchLoading",
       "currentItem",
+      "responseError",
     ]),
     taskId() {
       return this.$route.params.id
@@ -40,10 +43,29 @@ export default {
     },
   },
   methods: {
-    ...mapActions(useTasksStore, ["fetchItemById"]),
+    ...mapActions(useTasksStore, [
+      "fetchItemById",
+      "updateItemById",
+      "addItem",
+    ]),
+    onEditCancel() {
+      this.$router.push({ name: "tasks" })
+    },
+    async onEditSave(task) {
+      if (task.id) await this.updateItemById(task)
+      else await this.addItem(task)
+      if (this.responseError) alert(this.responseError)
+      else this.$router.push({ name: "tasks" })
+    },
   },
   mounted() {
     if (this.taskId) this.fetchItemById(this.taskId)
+  },
+  beforeRouteLeave() {
+    if (this.taskId) {
+      const tasksStore = useTasksStore()
+      tasksStore.clearCurrentItem()
+    }
   },
 }
 </script>

@@ -4,7 +4,11 @@
       {{ task.content }}
     </p>
     <div class="actions">
-      <button v-if="actions.canEdit" class="action-btn edit-btn">
+      <button
+        v-if="actions.canEdit"
+        class="action-btn edit-btn"
+        @click="onEdit"
+      >
         Редагувати
       </button>
       <button
