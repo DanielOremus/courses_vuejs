@@ -7,7 +7,11 @@
       <button v-if="actions.canEdit" class="action-btn edit-btn">
         Редагувати
       </button>
-      <button v-if="actions.canDelete" class="action-btn delete-btn">
+      <button
+        v-if="actions.canDelete"
+        class="action-btn delete-btn"
+        @click="onDelete"
+      >
         Видалити
       </button>
     </div>
@@ -17,6 +21,7 @@
 <script>
 export default {
   name: "TaskCard",
+  emits: ["task-delete", "task-edit"],
   props: {
     task: {
       type: Object,
@@ -28,6 +33,14 @@ export default {
         canDelete: true,
         canEdit: true,
       },
+    },
+  },
+  methods: {
+    onDelete() {
+      this.$emit("task-delete", this.task.id)
+    },
+    onEdit() {
+      this.$emit("task-edit", this.task.id)
     },
   },
 }

@@ -30,6 +30,17 @@ export default class CollectionManager {
       CollectionManager.saveItems(collectionName, items)
     }
   }
+  static updateManyItems(
+    collectionName,
+    { fieldName, fieldValue },
+    updatedData
+  ) {
+    let items = CollectionManager.getItems(collectionName)
+    items = items.map((item) =>
+      item[fieldName] === fieldValue ? { ...item, ...updatedData } : item
+    )
+    CollectionManager.saveItems(collectionName, items)
+  }
   static deleteItem(collectionName, itemId) {
     let items = CollectionManager.getItems(collectionName)
     items = items.filter(({ id }) => id !== itemId)

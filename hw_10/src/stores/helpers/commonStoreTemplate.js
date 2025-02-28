@@ -39,8 +39,8 @@ export const actions = {
     this.responseError = null
     this.actionLoading = true
     try {
-      CollectionManager.addItem(this.collectionName, itemData)
       await sleep()
+      CollectionManager.addItem(this.collectionName, itemData)
       this.itemsList.push(itemData)
     } catch (error) {
       this.responseError = error
@@ -52,21 +52,22 @@ export const actions = {
     this.responseError = null
     this.actionLoading = true
     try {
-      CollectionManager.updateItem(this.collectionName, itemData)
       await sleep()
+      CollectionManager.updateItem(this.collectionName, itemData)
+      const index = this.itemsList.findIndex((item) => item.id === itemData.id)
+      this.itemsList[index] = { ...this.itemsList[index], ...itemData }
     } catch (error) {
       this.responseError = error
     } finally {
       this.actionLoading = false
     }
-    // this.
   },
   async deleteItemById(id) {
     this.responseError = null
     this.actionLoading = true
     try {
-      CollectionManager.deleteItem(this.collectionName, id)
       await sleep()
+      CollectionManager.deleteItem(this.collectionName, id)
       this.itemsList = this.itemsList.filter((item) => item.id !== id)
     } catch (error) {
       this.responseError = error

@@ -56,12 +56,15 @@ export default {
       else this.returnToList()
     },
     returnToList() {
-      this.clearCurrentItem()
       this.$router.push({ name: "users" })
     },
   },
   mounted() {
     if (this.userId) this.fetchItemById(this.userId)
+  },
+  beforeRouteLeave() {
+    const usersStore = useUsersStore()
+    usersStore.clearCurrentItem()
   },
 }
 </script>

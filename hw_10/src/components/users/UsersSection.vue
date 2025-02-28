@@ -1,4 +1,5 @@
 <template>
+  <loading-overlay v-if="actionLoading" />
   <div class="users-table-wrapper">
     <users-table />
     <router-link :to="{ name: 'userEdit' }"
@@ -10,11 +11,18 @@
 </template>
 
 <script>
+import { mapState } from "pinia"
+import { useUsersStore } from "@/stores/users"
+import LoadingOverlay from "../general/LoadingOverlay.vue"
 import UsersTable from "./UsersTable/index.vue"
 export default {
   name: "UsersSection",
   components: {
     UsersTable,
+    LoadingOverlay,
+  },
+  computed: {
+    ...mapState(useUsersStore, ["actionLoading"]),
   },
   methods: {
     onCreate() {

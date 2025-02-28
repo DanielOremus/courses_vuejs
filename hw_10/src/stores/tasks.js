@@ -10,8 +10,10 @@ export const useTasksStore = defineStore("tasks", {
   state: () => ({
     ...JSON.parse(JSON.stringify(generalState)),
     collectionName: "tasks",
+    userTasks: [],
   }),
   getters,
+
   actions: {
     ...generalActions,
     async fetchTasksByUserId(userId) {
@@ -23,14 +25,54 @@ export const useTasksStore = defineStore("tasks", {
           this.collectionName,
           { fieldName: "responsible", fieldValue: userId }
         )
-        console.log(tasks)
-
+        this.userTasks = tasks
         return tasks
       } catch (error) {
         this.responseError = error
       } finally {
         this.fetchLoading = false
       }
+    },
+    async deattachTaskResponsible(taskId) {
+      this.responseError = null
+      this.actionLoading = true
+      try {
+        await sleep()
+        CollectionManager.updateItem(this.collectionName, {
+          id: taskId,
+          responsible: null,
+        })
+        this.userTasks = this.userTasks.filter((task) => task.id !== taskId)
+      } catch (error) {
+        this.responseError = error
+      } finally {
+        this.actionLoading = false
+      }
+    },
+    async clearTasksResponsible(responsibleId) {
+      this.responseError = null
+      this.actionLoading = true
+      try {
+        await sleep()
+        CollectionManager.updateManyItems(
+          this.collectionName,
+          {
+            fieldName: "responsible",
+            fieldValue: responsibleId,
+          },
+          { responsible: null }
+        )
+        this.userTasks = this.userTasks.filter(
+          (task) => task.responsible !== responsibleId
+        )
+      } catch (error) {
+        this.responseError = error
+      } finally {
+        this.actionLoading = false
+      }
+    },
+    clearUserTasks() {
+      this.userTasks = []
     },
   },
 })

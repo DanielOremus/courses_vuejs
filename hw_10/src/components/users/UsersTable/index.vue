@@ -48,7 +48,7 @@ export default {
   },
   methods: {
     ...mapActions(useUsersStore, ["fetchItems", "deleteItemById"]),
-    // ...mapActions(useTasksStore, ["clearTasksResponsible"]),
+    ...mapActions(useTasksStore, ["clearTasksResponsible"]),
     colorClass(index) {
       return index % 2 ? "light-grey" : "dark-grey"
     },
@@ -56,7 +56,6 @@ export default {
       this.$router.push({ name: "userEdit", params: { id: userId } })
     },
     onDelete(userId) {
-      // this.clearTasksResponsible(userId)
       this.deleteItemById(userId)
     },
     onDetails(event, userId) {

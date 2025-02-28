@@ -5,6 +5,8 @@
       :key="task.id"
       :task="task"
       :actions="{ canDelete, canEdit }"
+      @task-edit="$emit('task-edit', $event)"
+      @task-delete="$emit('task-delete', $event)"
     />
   </div>
 </template>
@@ -16,6 +18,7 @@ export default {
   components: {
     TaskCard,
   },
+  emits: ["task-delete", "task-edit"],
   props: {
     tasksList: {
       type: Array,

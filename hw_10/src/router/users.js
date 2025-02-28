@@ -1,3 +1,4 @@
+import { useUsersStore } from "@/stores/users"
 export default [
   {
     path: "/users",
@@ -13,5 +14,9 @@ export default [
     path: "/users/edit/:id?",
     name: "userEdit",
     component: () => import("@/views/users/UserEditView.vue"),
+    beforeLeave(to, from) {
+      const usersStore = useUsersStore()
+      usersStore.clearCurrentItem()
+    },
   },
 ]
