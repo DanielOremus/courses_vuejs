@@ -1,7 +1,9 @@
 <template>
-  <MainMasterPage>
-    <h2>Homework 2 by DO</h2>
-  </MainMasterPage>
+  <main-master-page>
+    <div class="image-wrapper">
+      <img src="@/assets/images/task-img.png?url" />
+    </div>
+  </main-master-page>
 </template>
 
 <script>
@@ -14,4 +16,11 @@ export default {
 }
 </script>
 
-<style lang="css" scoped></style>
+<style lang="scss" scoped>
+.image-wrapper {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  translate: -50% -50%;
+}
+</style>

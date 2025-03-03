@@ -1,0 +1,17 @@
+.task-manager {
+  background-color: var(--card-background);
+  padding: 1rem 2rem;
+  border-radius: 10px;
+}
+.task-manager__title {
+  margin-bottom: 1rem;
+}
+.task-manager__list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.error-caption,
+.no-tasks-caption {
+  font-size: 1rem;
+}

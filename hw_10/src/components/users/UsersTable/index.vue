@@ -70,5 +70,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import url(@/assets/style/components/users/users_table.scss);
+@import "@/assets/style/components/users/users_table.scss";
 </style>

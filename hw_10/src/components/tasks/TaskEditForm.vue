@@ -39,7 +39,8 @@ export default {
   data() {
     return {
       task: {
-        content: " ",
+        content: "",
+        responsible: null,
       },
     }
   },

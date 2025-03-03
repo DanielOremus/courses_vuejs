@@ -57,49 +57,6 @@ export default {
 }
 </script>
 
-<style lang="css" scoped>
-.navigation-container {
-  height: 80px;
-  display: flex;
-  justify-content: space-between;
-  padding-inline: 8rem;
-  border-bottom: 2px solid hsla(160, 100%, 37%, 1);
-  background-color: rgb(15, 15, 15);
-}
-.navigation-wrapper {
-  position: sticky;
-}
-.homework-data {
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  text-align: center;
-}
-.homework-number {
-  font-size: 1.5rem;
-  line-height: 1em;
-  font-weight: 500;
-  color: var(--color-text);
-}
-.author {
-  color: hsla(160, 100%, 37%, 1);
-}
-.main-navigation {
-  flex-basis: 60%;
-  font-size: 1.25rem;
-}
-.nav-links {
-  height: 100%;
-  display: flex;
-  list-style: none;
-  justify-content: space-between;
-  align-items: center;
-}
-
-@media only screen and (max-width: 960px) {
-  .navigation-container {
-    padding-inline: 4rem;
-  }
-}
+<style lang="scss" scoped>
+@import "@/assets/style/components/sections/header.scss";
 </style>

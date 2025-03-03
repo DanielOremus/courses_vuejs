@@ -37,9 +37,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.tasks-list {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
+@import "@/assets/style/components/tasks/tasks_list.scss";
 </style>

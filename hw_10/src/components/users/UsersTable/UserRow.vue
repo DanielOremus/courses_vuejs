@@ -37,5 +37,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import url(@/assets/style/components/users/user_row.scss);
+@import "@/assets/style/components/users/user_row.scss";
 </style>

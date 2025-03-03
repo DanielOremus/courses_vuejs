@@ -1,13 +1,15 @@
-.my-textarea {
+.my-selector {
   font-size: inherit;
   outline: none;
   border: 2px solid rgb(131, 131, 131);
   background-color: transparent;
-  color: white;
-  padding: 0.8rem;
+  color: inherit;
+  padding: 0.5rem;
   border-radius: 5px;
-  resize: vertical;
 }
-.my-textarea:focus {
+.my-selector:focus {
   border: 2px solid white;
+}
+.my-selector option {
+  background-color: var(--vt-c-black);
 }

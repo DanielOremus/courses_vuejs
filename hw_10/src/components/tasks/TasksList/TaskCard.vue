@@ -51,15 +51,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.task {
-  font-size: 1.1rem;
-  padding: 0.5em 1em;
-  background-color: rgb(68, 68, 68);
-  border-radius: 10px;
-}
-.actions {
-  display: flex;
-  justify-content: flex-end;
-  gap: 1rem;
-}
+@import "@/assets/style/components/tasks/tasks_list_card.scss";
 </style>

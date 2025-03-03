@@ -1,6 +1,5 @@
 <template>
-  <main-master-page>
-    <loading-overlay v-if="fetchLoading || actionLoading" />
+  <main-master-page :render-loading-overlay="fetchLoading || actionLoading">
     <div class="user-card">
       <h1 class="user-card__title">Користувач</h1>
 
@@ -28,14 +27,12 @@ import { mapActions, mapState } from "pinia"
 import MainMasterPage from "@/layouts/MainMasterPage.vue"
 import TasksList from "@/components/tasks/TasksList/index.vue"
 import LoadingCircle from "@/components/general/LoadingCircle.vue"
-import LoadingOverlay from "@/components/general/LoadingOverlay.vue"
 export default {
   name: "UserDetailsView",
   components: {
     MainMasterPage,
     TasksList,
     LoadingCircle,
-    LoadingOverlay,
   },
   computed: {
     ...mapState(useUsersStore, [

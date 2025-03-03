@@ -1,5 +1,6 @@
 <template>
   <div class="main-layout">
+    <loading-overlay v-if="renderLoadingOverlay" />
     <Header />
     <div class="content">
       <slot></slot>
@@ -8,11 +9,19 @@
 </template>
 
 <script>
+import LoadingOverlay from "@/components/general/LoadingOverlay.vue"
 import Header from "@/components/sections/Header.vue"
 export default {
   name: "MainMasterPage",
   components: {
     Header,
+    LoadingOverlay,
+  },
+  props: {
+    renderLoadingOverlay: {
+      type: Boolean,
+      default: false,
+    },
   },
 }
 </script>

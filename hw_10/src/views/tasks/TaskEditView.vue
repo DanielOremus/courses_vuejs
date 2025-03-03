@@ -1,6 +1,5 @@
 <template>
-  <main-master-page>
-    <loading-overlay v-if="fetchLoading" />
+  <main-master-page :render-loading-overlay="fetchLoading">
     <div class="task-form-wrapper">
       <h1 class="form-title">
         {{ formTitle }}
@@ -19,14 +18,12 @@
 import { useTasksStore } from "@/stores/tasks"
 import { mapState, mapActions } from "pinia"
 import MainMasterPage from "@/layouts/MainMasterPage.vue"
-import LoadingOverlay from "@/components/general/LoadingOverlay.vue"
 import TaskEditForm from "@/components/tasks/TaskEditForm.vue"
 export default {
   name: "TaskEditView",
   components: {
     TaskEditForm,
     MainMasterPage,
-    LoadingOverlay,
   },
   computed: {
     ...mapState(useTasksStore, [

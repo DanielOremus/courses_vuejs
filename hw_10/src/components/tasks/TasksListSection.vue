@@ -26,7 +26,7 @@ import { useTasksStore } from "@/stores/tasks"
 import TasksList from "./TasksList/index.vue"
 import LoadingCircle from "../general/LoadingCircle.vue"
 export default {
-  name: "TasksSection",
+  name: "TasksListSection",
   components: {
     TasksList,
     LoadingCircle,
@@ -66,7 +66,7 @@ export default {
   margin-bottom: 2rem;
 }
 .new-task-caption {
-  margin-top: 1rem;
+  margin-top: 0.2rem;
   font-size: 1.1rem;
 }
 .no-tasks-caption {

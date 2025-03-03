@@ -1,6 +1,5 @@
 <template>
-  <main-master-page>
-    <loading-overlay v-if="fetchLoading" />
+  <main-master-page :render-loading-overlay="fetchLoading">
     <div class="user-form-wrapper">
       <h1 class="form-title">
         {{ formTitle }}
@@ -20,13 +19,11 @@ import { useUsersStore } from "@/stores/users"
 import { mapActions, mapState } from "pinia"
 import UserEditForm from "@/components/users/UserEditForm.vue"
 import MainMasterPage from "@/layouts/MainMasterPage.vue"
-import LoadingOverlay from "@/components/general/LoadingOverlay.vue"
 export default {
   name: "UserEditView",
   components: {
     MainMasterPage,
     UserEditForm,
-    LoadingOverlay,
   },
   computed: {
     ...mapState(useUsersStore, [

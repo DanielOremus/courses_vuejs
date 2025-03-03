@@ -2,17 +2,31 @@ import { defineStore } from "pinia"
 import { sleep } from "./helpers"
 import {
   state as generalState,
-  getters,
+  getters as generalGetters,
   actions as generalActions,
 } from "./helpers/commonStoreTemplate"
 import CollectionManager from "./managers/localStorageDB"
+import { useUsersStore } from "./users"
 export const useTasksStore = defineStore("tasks", {
   state: () => ({
     ...JSON.parse(JSON.stringify(generalState)),
     collectionName: "tasks",
     userTasks: [],
   }),
-  getters,
+  getters: {
+    ...generalGetters,
+    populatedItemsList: (state) => {
+      const usersStore = useUsersStore()
+      const users = {}
+      for (const user of usersStore.itemsList) {
+        users[user.id] = { ...user }
+      }
+      return state.itemsList.map((item) => ({
+        ...item,
+        responsible: users[item.responsible] ?? null,
+      }))
+    },
+  },
 
   actions: {
     ...generalActions,
@@ -53,7 +67,7 @@ export const useTasksStore = defineStore("tasks", {
       this.responseError = null
       this.actionLoading = true
       try {
-        await sleep()
+        await sleep(500)
         CollectionManager.updateManyItems(
           this.collectionName,
           {
