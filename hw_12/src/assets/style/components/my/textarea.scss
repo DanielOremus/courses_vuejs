@@ -1,0 +1,13 @@
+.my-textarea {
+  font-size: inherit;
+  outline: none;
+  border: 2px solid rgb(131, 131, 131);
+  background-color: transparent;
+  color: white;
+  padding: 0.8rem;
+  border-radius: 5px;
+  resize: vertical;
+}
+.my-textarea:focus {
+  border: 2px solid white;
+}
