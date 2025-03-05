@@ -12,13 +12,17 @@ export const lessonsRoutes = [
         meta: { requiresAuth: true },
       },
       {
-        path: ":lessonIds+",
+        path: ":lessonsIds(\\d+)*",
         component: () => import("@/views/lessons/TeachersSelectView.vue"),
         name: "teachersSelect",
         meta: { requiresAuth: true },
-        beforeEnter: (to, from, next) => {
-          if (!from.params.lessonIds.length) next({ name: "select" })
+        beforeEnter: (to, from) => {
+          if (from.name !== "lessonsSelect") return { name: "lessonsSelect" }
+          // if (!to.params.lessonIds.length) return { name: "lessonsSelect" }
         },
+      },
+      {
+        path: ":lessonTeacherIds(\\d+-\\d+)+",
       },
     ],
   },

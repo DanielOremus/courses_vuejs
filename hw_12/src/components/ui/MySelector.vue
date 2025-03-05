@@ -11,7 +11,7 @@ export default {
   name: "MySelector",
   props: {
     modelValue: {
-      type: [String, Number],
+      type: [String, Number, Array],
       default: null,
     },
     items: {

@@ -1,5 +1,5 @@
 <template>
-  <input class="my-input" :type="type" v-model="inputValue" />
+  <input class="my-input" ref="inputEl" :type="type" v-model="inputValue" />
 </template>
 
 <script>
@@ -22,9 +22,8 @@ export default {
         return this.modelValue
       },
       set(v) {
-        if (this.modelModifiers.number) {
-          v = v === "" ? null : parseFloat(v)
-        }
+        if (this.modelModifiers.number) v = v === "" ? null : parseFloat(v)
+
         this.$emit("update:modelValue", v)
       },
     },

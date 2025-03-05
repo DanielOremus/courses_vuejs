@@ -20,6 +20,6 @@ export default {
 .login-form__container {
   width: 650px;
   margin: 0 auto;
-  margin-top: 2rem;
+  margin-top: 5rem;
 }
 </style>

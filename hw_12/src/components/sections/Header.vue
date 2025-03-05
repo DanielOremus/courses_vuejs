@@ -37,12 +37,12 @@ export default {
           title: "Головна",
         },
         {
-          routeName: "lessons",
+          routeName: "lessonsSelect",
           activeClass: "active",
           title: "Уроки",
         },
         // {
-        //   routeName: "teachers",
+        //   routeName: "teachersSelect",
         //   activeClass: "active",
         //   title: "Вчителі",
         // },
