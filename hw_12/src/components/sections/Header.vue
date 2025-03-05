@@ -4,7 +4,7 @@
       <div class="navigation-container">
         <router-link :to="{ name: 'home' }">
           <div class="homework-data">
-            <span class="homework-number">Homework 10</span>
+            <span class="homework-number">Homework 12</span>
             <span class="author">by Daniel Oremus</span>
           </div>
         </router-link>
@@ -36,20 +36,15 @@ export default {
           activeClass: "active",
           title: "Головна",
         },
+        {
+          routeName: "lessons",
+          activeClass: "active",
+          title: "Уроки",
+        },
         // {
-        //   routeName: "tasksManager",
+        //   routeName: "teachers",
         //   activeClass: "active",
-        //   title: "Розподілювач завдань",
-        // },
-        // {
-        //   routeName: "users",
-        //   activeClass: "active",
-        //   title: "Користувачі",
-        // },
-        // {
-        //   routeName: "tasks",
-        //   activeClass: "active",
-        //   title: "Завдання",
+        //   title: "Вчителі",
         // },
       ],
     }

@@ -1,12 +1,12 @@
 .my-input {
   font-size: inherit;
   outline: none;
-  border: 2px solid rgb(131, 131, 131);
+  border: 2px solid rgb(110, 110, 110);
   background-color: transparent;
   color: white;
   padding: 1rem;
   border-radius: 5px;
 }
 .my-input:focus {
-  border: 2px solid white;
+  border: 2px solid hsla(160, 100%, 37%, 1);
 }

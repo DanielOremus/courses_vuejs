@@ -1,5 +1,5 @@
 import HomeView from "@/views/HomeView.vue"
-export default [
+export const mainRoutes = [
   {
     path: "/",
     name: "home",

@@ -3,12 +3,8 @@
 </template>
 
 <script>
-import MainMasterPage from "@/layouts/MainMasterPage.vue"
 export default {
   name: "HomeView",
-  components: {
-    MainMasterPage,
-  },
 }
 </script>
 
