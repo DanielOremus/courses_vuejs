@@ -71,8 +71,11 @@ export default {
         params: { lessonsIds },
       })
     },
-    onTeachersSelect(data) {
-      console.log("do something")
+    onTeachersSelect(idPairs) {
+      this.$router.push({
+        name: "educationPlan",
+        params: { lessonTeacherIds: idPairs },
+      })
     },
   },
 }

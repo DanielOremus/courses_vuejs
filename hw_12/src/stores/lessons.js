@@ -1,4 +1,5 @@
 import { defineStore } from "pinia"
+import { useTeachersStore } from "./teachers"
 
 export const useLessonsStore = defineStore("lessons", {
   state: () => ({
@@ -16,18 +17,24 @@ export const useLessonsStore = defineStore("lessons", {
     ],
   }),
   getters: {
-    getLessonsByIds:
-      ({ lessonsList }) =>
-      (ids) => {
-        const objList = {}
-        for (const lesson of lessonsList) {
-          objList[lesson.id] = { ...lesson }
-        }
-        const list = []
-        ids.forEach((id) => {
-          if (objList[id]) list.push(objList[id])
-        })
-        return list
-      },
+    lessonsListObj({ lessonsList }) {
+      return lessonsList.reduce((acc, lesson) => {
+        acc[lesson.id] = { ...lesson }
+        return acc
+      }, {})
+    },
+    getLessonsByIds: (state) => (idList) => {
+      return idList.map((id) => ({ ...state.lessonsListObj[id] }))
+    },
+    getPopulatedEducationList(state) {
+      return (lessonsAndTeachersPairs) => {
+        const teachersListObj = useTeachersStore().teachersListObj
+
+        return lessonsAndTeachersPairs.map((pair) => ({
+          lesson: state.lessonsListObj[pair.lesson],
+          teacher: teachersListObj[pair.teacher],
+        }))
+      }
+    },
   },
 })

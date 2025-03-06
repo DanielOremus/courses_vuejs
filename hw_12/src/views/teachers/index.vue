@@ -1,10 +1,10 @@
 <template>
-  <div>Not found</div>
+  <main-master-page></main-master-page>
 </template>
 
 <script>
 export default {
-  name: "NotFoundView",
+  name: "TeachersView",
 }
 </script>
 

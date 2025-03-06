@@ -44,7 +44,7 @@ export default {
     ...mapActions(useAuthStore, ["login"]),
     onLogin() {
       this.login({ username: this.username, password: this.password })
-      this.$router.push(this.$route.query.redirect)
+      this.$router.push(this.$route.query.redirect ?? "/")
     },
   },
 }

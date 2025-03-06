@@ -18,6 +18,25 @@
                 {{ item.title }}
               </router-link>
             </li>
+            <li class="nav-item">
+              <div class="user-section">
+                <template v-if="isAuthenticated">
+                  Вітаємо, {{ username }}
+                  <fa-icon
+                    class="logout-icon"
+                    :icon="['fas', 'right-from-bracket']"
+                    @click="onLogout"
+                  />
+                </template>
+                <router-link
+                  v-else
+                  exact-active-class="active"
+                  :to="{ name: 'login' }"
+                >
+                  Вхід
+                </router-link>
+              </div>
+            </li>
           </ul>
         </nav>
       </div>
@@ -26,6 +45,8 @@
 </template>
 
 <script>
+import { mapActions, mapState } from "pinia"
+import { useAuthStore } from "@/stores/auth"
 export default {
   name: "Header",
   data() {
@@ -41,13 +62,23 @@ export default {
           activeClass: "active",
           title: "Уроки",
         },
-        // {
-        //   routeName: "teachersSelect",
-        //   activeClass: "active",
-        //   title: "Вчителі",
-        // },
+        {
+          routeName: "teachers",
+          activeClass: "active",
+          title: "Вчителі",
+        },
       ],
     }
+  },
+  computed: {
+    ...mapState(useAuthStore, ["isAuthenticated", "username"]),
+  },
+  methods: {
+    ...mapActions(useAuthStore, ["logout"]),
+    onLogout() {
+      this.logout()
+      this.$router.push({ name: "login" })
+    },
   },
 }
 </script>

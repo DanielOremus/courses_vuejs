@@ -1,3 +1,5 @@
+import { parseLessonsTeachersPairs } from "@/stores/helpers/lessons"
+
 export const lessonsRoutes = [
   {
     path: "/lessons",
@@ -12,8 +14,8 @@ export const lessonsRoutes = [
         meta: { requiresAuth: true },
       },
       {
-        path: ":lessonsIds(\\d+)*",
-        component: () => import("@/views/lessons/TeachersSelectView.vue"),
+        path: ":lessonsIds(\\d+)+",
+        component: () => import("@/views/teachers/TeachersSelectView.vue"),
         name: "teachersSelect",
         meta: { requiresAuth: true },
         beforeEnter: (to, from) => {
@@ -23,6 +25,15 @@ export const lessonsRoutes = [
       },
       {
         path: ":lessonTeacherIds(\\d+-\\d+)+",
+        component: () => import("@/views/lessons/EducationPlanView.vue"),
+        name: "educationPlan",
+        meta: { requiredAuth: false },
+        beforeEnter: (to) => {
+          const parsedPairs = parseLessonsTeachersPairs(
+            to.params.lessonTeacherIds
+          )
+          // const allExists = parsedPairs.every(pair=>)
+        },
       },
     ],
   },

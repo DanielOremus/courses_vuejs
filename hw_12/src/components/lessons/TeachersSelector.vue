@@ -7,14 +7,17 @@
     >
       {{ lesson.name }}
       <!-- TODO: fix teachers selection -->
-      <m-select :items="teachersList" v-model="selectedTeachersIds" />
+      <m-select
+        :items="teachersList"
+        v-model="selectedTeachersIds[lesson.id]"
+      />
     </div>
   </div>
   <div class="teachers-selector__actions">
     <button
       class="start-education-btn"
-      :disabled="selectedTeachersIds.length !== lessonsList.length"
-      @click="onLessonsSelect"
+      :disabled="!areAllLessonsAttached"
+      @click="onTeachersSelect"
     >
       Почати навчання
     </button>
@@ -37,8 +40,32 @@ export default {
   },
   data() {
     return {
-      selectedTeachersIds: [],
+      selectedTeachersIds: {},
     }
+  },
+  computed: {
+    areAllLessonsAttached() {
+      if (
+        Object.keys(this.selectedTeachersIds).length !== this.lessonsList.length
+      )
+        return false
+      for (const lessonsId in this.selectedTeachersIds) {
+        if (!this.selectedTeachersIds[lessonsId]) return false
+      }
+      return true
+    },
+  },
+  methods: {
+    onTeachersSelect() {
+      const idPairs = []
+      for (const lessonId in this.selectedTeachersIds) {
+        const teacherId = this.selectedTeachersIds[lessonId]
+        if (teacherId) {
+          idPairs.push(`${lessonId}-${teacherId}`)
+        }
+      }
+      this.$emit("select-teachers", idPairs)
+    },
   },
 }
 </script>
