@@ -1,5 +1,6 @@
 import { parseLessonsTeachersPairs } from "@/stores/helpers/lessons"
-
+import { useLessonsStore } from "@/stores/lessons"
+import { useTeachersStore } from "@/stores/teachers"
 export const lessonsRoutes = [
   {
     path: "/lessons",
@@ -29,10 +30,17 @@ export const lessonsRoutes = [
         name: "educationPlan",
         meta: { requiredAuth: false },
         beforeEnter: (to) => {
+          const teachersObjList = useTeachersStore().teachersListObj
+          const lessonsObjList = useLessonsStore().lessonsListObj
           const parsedPairs = parseLessonsTeachersPairs(
             to.params.lessonTeacherIds
           )
-          // const allExists = parsedPairs.every(pair=>)
+
+          const exists = parsedPairs.every(
+            (pair) =>
+              lessonsObjList[pair.lesson] && teachersObjList[pair.teacher]
+          )
+          if (!exists) return { name: "notFound" }
         },
       },
     ],
