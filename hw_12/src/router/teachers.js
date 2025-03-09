@@ -4,7 +4,7 @@ export const teachersRoutes = [
     name: "teachers",
     component: () => import("@/views/teachers/index.vue"),
     meta: {
-      requiresAuth: true,
+      requiresAuth: false,
     },
   },
 ]

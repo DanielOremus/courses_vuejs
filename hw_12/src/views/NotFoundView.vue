@@ -41,12 +41,13 @@ export default {
 .home-btn {
   margin-top: 1rem;
   font-size: 1.25rem;
-  padding: 0.3rem 1rem;
+  padding: 0.5rem 1rem;
   color: rgb(15, 15, 15);
   transition: background 0.2s ease;
   background-color: hsl(160, 99%, 41%);
   border: none;
   cursor: pointer;
+  border-radius: 5px;
 }
 .home-btn:hover {
   background-color: hsl(160, 100%, 50%);
