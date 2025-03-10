@@ -8,7 +8,7 @@
             <span class="author text-primary">by Daniel Oremus</span>
           </div>
         </router-link>
-        <nav class="main-navigation basis-2/5 text-xl">
+        <nav class="main-navigation basis-3/5 2xl:basis-1/2 text-xl">
           <ul class="nav-links">
             <li class="nav-item" v-for="(item, i) in navItems" :key="i">
               <router-link
@@ -42,9 +42,9 @@ export default {
           title: "Продукти",
         },
         {
-          routeName: "home",
+          routeName: "suppliers",
           activeClass: "active",
-          title: "Головна",
+          title: "Постачальники",
         },
         {
           routeName: "contacts",

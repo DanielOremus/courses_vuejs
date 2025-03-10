@@ -1,12 +1,16 @@
 <template>
   <main-layout>
     <div class="wrapper my-16">
-      <router-view name="filters" />
-      <products-list />
-      <router-view name="edit-form" />
+      <suppliers-list />
     </div>
     <template #footer>
       <Footer>
+        <template #left-section>
+          <span
+            >Найбільш популярний:
+            <span class="text-green-500">Економ</span></span
+          >
+        </template>
         <template #right-section>
           <span>Статус: <span class="text-green-500">відкрито</span></span>
         </template>
@@ -16,13 +20,11 @@
 </template>
 
 <script>
-import Footer from "@/components/sections/Footer.vue"
-import ProductsList from "@/components/products/ProductsList.vue"
+import SuppliersList from "@/components/suppliers/SuppliersList.vue"
 export default {
-  name: "ProductsView",
+  name: "SuppliersView",
   components: {
-    ProductsList,
-    Footer,
+    SuppliersList,
   },
 }
 </script>

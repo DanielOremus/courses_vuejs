@@ -4,7 +4,9 @@
     <div class="content flex-grow">
       <slot></slot>
     </div>
-    <Footer />
+    <slot name="footer">
+      <Footer />
+    </slot>
   </div>
 </template>
 

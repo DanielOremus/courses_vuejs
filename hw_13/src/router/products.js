@@ -7,12 +7,16 @@ export const productsRoutes = [
       {
         path: "selector",
         name: "productsSelector",
-        component: () => import("@/views/products/ProductsSelector.vue"),
+        components: {
+          filters: () => import("@/views/products/ProductsSelector.vue"),
+        },
       },
       {
         path: "editor",
         name: "productsEditor",
-        component: () => import("@/views/products/ProductsEditor.vue"),
+        components: {
+          editForm: () => import("@/views/products/ProductsEditor.vue"),
+        },
       },
     ],
   },
