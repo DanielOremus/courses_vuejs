@@ -24,6 +24,14 @@ app.use(PrimeVue, {
       darkModeSelector: ".dark",
     },
   },
+  pt: {
+    inputText: {
+      root: "border-2",
+    },
+    button: {
+      root: "text-lg py-1",
+    },
+  },
 })
 
 app.component("main-layout", MainLayout)

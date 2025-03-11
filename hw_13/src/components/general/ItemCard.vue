@@ -20,13 +20,7 @@
     </div>
     <div class="card-footer">
       <slot name="footer">
-        <Button
-          fluid
-          :pt="{
-            root: 'text-lg py-1',
-          }"
-          >Купити</Button
-        >
+        <Button fluid>Купити</Button>
       </slot>
     </div>
   </div>

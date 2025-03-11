@@ -1,6 +1,6 @@
 <template>
-  <header class="header">
-    <div class="navigation-wrapper position-sticky">
+  <header class="header sticky top-0 z-10">
+    <div class="navigation-wrapper">
       <div class="navigation-container">
         <slot>
           <router-link :to="{ name: 'home' }">

@@ -3,7 +3,7 @@
     <div class="wrapper my-16">
       <router-view name="filters" />
       <products-list />
-      <router-view name="edit-form" />
+      <router-view name="editForm" class="mt-10" />
     </div>
     <template #footer>
       <Footer>
