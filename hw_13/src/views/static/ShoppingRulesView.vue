@@ -1,6 +1,6 @@
 <template>
   <gallery-layout>
-    <div class="mt-32 text-2xl flex justify-center">
+    <div class="my-32 text-2xl flex justify-center">
       <div>
         <h1 class="mb-2">Правила купівлі:</h1>
         <ul class="rules-list text-xl list-inside">

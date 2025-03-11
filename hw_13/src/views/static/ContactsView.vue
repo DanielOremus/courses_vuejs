@@ -1,6 +1,6 @@
 <template>
   <gallery-layout>
-    <div class="text-center mt-32">
+    <div class="text-center my-32">
       <p class="text-2xl">
         <span class="font-semibold"> Наші контакти: </span> <br />Адреса
         магазину: біля будинку Баби Галі,<br />Менеджер: Дід Петро,<br />Заступник:
