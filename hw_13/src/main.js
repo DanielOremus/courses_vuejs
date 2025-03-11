@@ -8,6 +8,7 @@ import router from "./router"
 import pinia from "./stores/index"
 import Aura from "@primeuix/themes/aura"
 import MainLayout from "./layouts/MainLayout.vue"
+import GalleryLayout from "./layouts/GalleryLayout.vue"
 const app = createApp(App)
 
 app.use(pinia)
@@ -26,5 +27,6 @@ app.use(PrimeVue, {
 })
 
 app.component("main-layout", MainLayout)
+app.component("gallery-layout", GalleryLayout)
 
 app.mount("#app")

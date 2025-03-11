@@ -2,24 +2,26 @@
   <header class="header">
     <div class="navigation-wrapper position-sticky">
       <div class="navigation-container">
-        <router-link :to="{ name: 'home' }">
-          <div class="homework-data">
-            <span class="homework-number">Homework 13</span>
-            <span class="author text-primary">by Daniel Oremus</span>
-          </div>
-        </router-link>
-        <nav class="main-navigation basis-3/5 2xl:basis-1/2 text-xl">
-          <ul class="nav-links">
-            <li class="nav-item" v-for="(item, i) in navItems" :key="i">
-              <router-link
-                :exact-active-class="item.activeClass"
-                :to="{ name: item.routeName }"
-              >
-                {{ item.title }}
-              </router-link>
-            </li>
-          </ul>
-        </nav>
+        <slot>
+          <router-link :to="{ name: 'home' }">
+            <div class="homework-data">
+              <span class="homework-number">Homework 13</span>
+              <span class="author text-primary">by Daniel Oremus</span>
+            </div>
+          </router-link>
+          <nav class="main-navigation basis-3/5 2xl:basis-1/2 text-xl">
+            <ul class="nav-links">
+              <li class="nav-item" v-for="(item, i) in navItems" :key="i">
+                <router-link
+                  :exact-active-class="item.activeClass"
+                  :to="{ name: item.routeName }"
+                >
+                  {{ item.title }}
+                </router-link>
+              </li>
+            </ul>
+          </nav>
+        </slot>
       </div>
     </div>
   </header>
