@@ -1,6 +1,6 @@
 <template>
-  <div class="form-container flex justify-center">
-    <div class="form-wrapper min-w-96 w-1/2">
+  <div class="form-container">
+    <div class="form-wrapper min-w-96 w-1/2 mx-auto">
       <product-form />
     </div>
   </div>

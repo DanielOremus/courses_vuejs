@@ -31,6 +31,9 @@ app.use(PrimeVue, {
     button: {
       root: "text-lg py-1",
     },
+    select: {
+      root: "border-2",
+    },
   },
 })
 

@@ -1,5 +1,5 @@
 <template>
-  <Form v-slot="$productData" class="flex flex-col gap-4">
+  <Form v-slot="$productData" class="flex flex-col gap-4 text-lg">
     <InputText name="name" type="text" placeholder="Назва" fluid />
     <InputText name="price" type="number" min="1" placeholder="Ціна" fluid />
     <FileUpload>

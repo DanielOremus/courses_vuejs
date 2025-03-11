@@ -9,7 +9,7 @@
               <span class="author text-primary">by Daniel Oremus</span>
             </div>
           </router-link>
-          <nav class="main-navigation basis-3/5 2xl:basis-1/2 text-xl">
+          <nav class="main-navigation grow text-xl">
             <ul class="nav-links">
               <li class="nav-item" v-for="(item, i) in navItems" :key="i">
                 <router-link
@@ -58,6 +58,16 @@ export default {
           activeClass: "active",
           title: "Правила купівлі",
         },
+        {
+          routeName: "productsSelector",
+          activeClass: "active",
+          title: "Фільтрування",
+        },
+        {
+          routeName: "productsEditor",
+          activeClass: "active",
+          title: "Створення",
+        },
       ],
     }
   },
@@ -66,7 +76,7 @@ export default {
 
 <style lang="css" scoped>
 .navigation-container {
-  @apply flex justify-between px-40 border-b-2 border-b-primary bg-surface-900;
+  @apply flex justify-between px-40 border-b-2 border-b-primary bg-surface-900 whitespace-nowrap;
   height: var(--header-height);
 }
 .homework-data {
@@ -76,6 +86,6 @@ export default {
   @apply text-2xl leading-4 font-medium text-surface-300;
 }
 .nav-links {
-  @apply h-full flex list-none justify-between items-center;
+  @apply h-full flex list-none justify-end gap-6 items-center;
 }
 </style>

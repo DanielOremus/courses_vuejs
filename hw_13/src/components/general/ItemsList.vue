@@ -31,7 +31,6 @@ export default {
 
 <style lang="css" scoped>
 .items-list {
-  @apply grid justify-center gap-x-10 gap-y-8;
-  grid-template-columns: repeat(4, minmax(200px, auto));
+  @apply grid lg:grid-cols-[repeat(4,_minmax(200px,_auto))] md:grid-cols-[repeat(2,_minmax(200px,_auto))] sm:grid-cols-[repeat(1,_minmax(200px,_auto))] justify-center gap-x-10 gap-y-8;
 }
 </style>

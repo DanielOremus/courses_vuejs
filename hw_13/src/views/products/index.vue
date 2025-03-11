@@ -1,7 +1,7 @@
 <template>
   <main-layout>
     <div class="wrapper my-16">
-      <router-view name="filters" />
+      <router-view name="filters" class="mb-10" />
       <products-list />
       <router-view name="editForm" class="mt-10" />
     </div>
