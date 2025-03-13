@@ -38,6 +38,11 @@ export default {
           activeClass: "active",
           title: "Головна",
         },
+        {
+          routeName: "users",
+          activeClass: "active",
+          title: "Користувачі",
+        },
       ],
     }
   },
