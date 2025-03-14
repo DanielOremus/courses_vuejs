@@ -6,7 +6,7 @@
     :start-page="startPage"
   >
     <template #default="{ currentItems }">
-      <div v-for="item in currentItems">
+      <div v-for="item in currentItems" :key="item.id">
         {{ item.name }} - {{ item.experience }}
       </div>
     </template>
