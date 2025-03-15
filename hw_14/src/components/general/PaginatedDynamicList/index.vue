@@ -11,18 +11,12 @@
       />
     </div>
     <div class="footer">
-      <slot
-        name="footer"
-        :pages-number="pagesNumber"
+      <component
+        :is="selectedPaginationComponent"
         :current-page="currentPage"
-      >
-        <component
-          :is="selectedPaginationComponent"
-          :current-page="currentPage"
-          :pages-number="pagesNumber"
-          @page-change="onPageChange"
-        />
-      </slot>
+        :pages-number="pagesNumber"
+        @page-change="onPageChange"
+      />
     </div>
   </div>
 </template>
@@ -31,12 +25,14 @@
 import OrderedList from "./components/lists/OrderedList.vue"
 import ExperienceList from "./components/lists/ExperienceList.vue"
 import ButtonPagination from "./components/pagination/ButtonPagination.vue"
+import ArrowPagination from "./components/pagination/ArrowPagination.vue"
 export default {
   name: "PaginatedList",
   components: {
     ExperienceList,
     OrderedList,
     ButtonPagination,
+    ArrowPagination,
   },
   props: {
     listTitle: {
@@ -91,8 +87,8 @@ export default {
       switch (this.paginationMode) {
         case 1:
           return ButtonPagination
-        // case 2:
-        //   return ExperienceList
+        case 2:
+          return ArrowPagination
       }
     },
   },
@@ -100,12 +96,6 @@ export default {
   methods: {
     onPageChange(newPage) {
       this.currentPage = newPage
-    },
-  },
-  //Варіант через watch для оновлення сторінки
-  watch: {
-    startPage(newValue) {
-      this.currentPage = newValue
     },
   },
 }

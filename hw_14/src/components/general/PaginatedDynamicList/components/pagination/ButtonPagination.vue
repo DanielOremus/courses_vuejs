@@ -24,7 +24,7 @@ export default {
   },
   methods: {
     onPageChange(pageNumber) {
-      this.$emit("page-change", pageNumber)
+      this.$emit("page-change", pageNumber - 1)
     },
   },
 }

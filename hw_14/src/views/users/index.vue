@@ -19,15 +19,15 @@
         <div class="flex gap-8">
           <paginated-dynamic-list
             list-title="Список працівників"
-            :items="usersList"
-          />
-          <paginated-dynamic-list
-            list-title="Стаж працівників"
-            :list-mode="2"
+            :pagination-mode="2"
             :items="usersList"
           />
           <paginated-dynamic-list
             :list-title="`Всього - ${usersList.length} ос.`"
+            :items="usersList"
+          />
+          <paginated-dynamic-list
+            list-title="Стаж працівників"
             :list-mode="2"
             :pagination-mode="2"
             :items="usersList"
