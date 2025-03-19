@@ -1,7 +1,7 @@
 <template>
   <loading-overlay v-if="loading" />
   <div class="form-container p-4">
-    <div class="form-wrapper md:w-2/3 lg:w-1/2 mx-auto mt-[5rem]">
+    <div class="form-wrapper md:w-2/3 lg:w-1/2 mx-auto mt-[3rem]">
       <product-form />
     </div>
   </div>

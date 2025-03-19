@@ -4,6 +4,7 @@ import he from "he"
 import apiEndpoints from "@/constants/apiEndpoints"
 import axios from "axios"
 import { defineStore } from "pinia"
+import { packInFormData } from "./helpers"
 
 export const useProductsStore = defineStore("products", {
   state: () => ({
@@ -30,14 +31,14 @@ export const useProductsStore = defineStore("products", {
       this.loading = true
       this.error = null
       try {
+        await new Promise((resolve) => setTimeout(resolve, 2000))
         const response = await axios.get(apiEndpoints.products.fetchById(id))
         const resData = response.data
-        await new Promise((resolve, reject) => setTimeout(resolve, 2000))
         const product = resData.data.product
         this.currentProduct = {
           ...product,
           name: he.decode(product.name),
-          description: he.decode(product.description),
+          description: he.decode(product.description ?? ""),
         }
       } catch (error) {
         this.error = error
@@ -48,10 +49,22 @@ export const useProductsStore = defineStore("products", {
     async createProduct(productData) {
       this.loading = true
       this.error = null
+
+      const productFormData = packInFormData(productData)
+
       try {
-        //TODO: rewrite to formData
-        await axios.post(apiEndpoints.products.create, productData)
-        this.productsList.push(productData)
+        const response = await axios.post(
+          apiEndpoints.products.create,
+          productFormData,
+          {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+          }
+        )
+        const resData = response.data
+        this.productsList.push(resData.data.product)
+        this.currentProduct = null
       } catch (error) {
         this.error = error
       } finally {
@@ -61,12 +74,25 @@ export const useProductsStore = defineStore("products", {
     async updateProduct(productData) {
       this.loading = true
       this.error = null
+
       const { _id } = productData
+      const productFormData = packInFormData(productData)
       try {
-        //TODO: rewrite to formData
-        await axios.put(apiEndpoints.products.updateById(_id), productData)
-        let product = this.productsList.find((product) => product._id === _id)
-        product = productData
+        const response = await axios.put(
+          apiEndpoints.products.updateById(_id),
+          productFormData,
+          {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+          }
+        )
+        const resData = response.data
+        let productInd = this.productsList.findIndex(
+          (product) => product._id === _id
+        )
+        this.productsList[productInd] = resData.data.product
+        this.currentProduct = null
       } catch (error) {
         this.error = error
       } finally {

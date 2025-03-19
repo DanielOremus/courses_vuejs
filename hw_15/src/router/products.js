@@ -1,6 +1,15 @@
 import apiEndpoints from "@/constants/apiEndpoints"
 import axios from "axios"
 
+const checkIfProductExists = async (to, from) => {
+  try {
+    await axios.get(apiEndpoints.products.fetchById(to.params.id))
+    return { exists: true, error: null }
+  } catch (error) {
+    return { exists: false, error }
+  }
+}
+
 export const productsRoutes = [
   {
     path: "/products",
@@ -18,6 +27,18 @@ export const productsRoutes = [
         name: "productEdit",
         props: true,
         component: () => import("@/views/products/ProductEdit.vue"),
+        beforeEnter: async (to, from) => {
+          const { exists, error } = await checkIfProductExists(to, from)
+          if (!exists) {
+            switch (error.response?.status) {
+              case 404:
+              case 400:
+                return { name: "notFound" }
+              default:
+                return { name: "home" }
+            }
+          }
+        },
       },
       {
         path: ":id",
@@ -25,11 +46,9 @@ export const productsRoutes = [
         props: true,
         component: () => import("@/views/products/ProductDetails.vue"),
         beforeEnter: async (to, from) => {
-          try {
-            await axios.get(apiEndpoints.products.fetchById(to.params.id))
-          } catch (error) {
-            const response = error.response
-            switch (response.status) {
+          const { exists, error } = await checkIfProductExists(to, from)
+          if (!exists) {
+            switch (error.response?.status) {
               case 404:
               case 400:
                 return { name: "notFound" }
