@@ -28,6 +28,7 @@ export const productsRoutes = [
         props: true,
         component: () => import("@/views/products/ProductEdit.vue"),
         beforeEnter: async (to, from) => {
+          if (!to.params.id) return true
           const { exists, error } = await checkIfProductExists(to, from)
           if (!exists) {
             switch (error.response?.status) {

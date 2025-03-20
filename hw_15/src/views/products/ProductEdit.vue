@@ -1,14 +1,14 @@
 <template>
   <loading-overlay v-if="loading" />
   <div class="form-container p-4">
-    <div class="form-wrapper md:w-2/3 lg:w-1/2 mx-auto mt-[3rem]">
+    <div class="form-wrapper md:w-2/3 lg:w-1/2 mx-auto my-[3rem]">
       <product-form />
     </div>
   </div>
 </template>
 
 <script>
-import ProductForm from "@/components/product/ProductForm.vue"
+import ProductForm from "@/components/product/ProductForm/index.vue"
 import { useCategoriesStore } from "@/stores/categories"
 import { useProductsStore } from "@/stores/products"
 import { mapActions, mapState } from "pinia"
@@ -30,7 +30,9 @@ export default {
     ...mapActions(useCategoriesStore, ["fetchAllCategories"]),
   },
   mounted() {
-    this.fetchProductById(this.id)
+    if (this.id) {
+      this.fetchProductById(this.id)
+    }
     this.fetchAllCategories()
   },
 }

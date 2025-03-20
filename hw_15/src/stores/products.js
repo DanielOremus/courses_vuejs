@@ -27,6 +27,21 @@ export const useProductsStore = defineStore("products", {
         this.loading = false
       }
     },
+    async fetchProductsByQuery(query = {}) {
+      this.loading = true
+      this.error = null
+      try {
+        const response = await axios.get(apiEndpoints.products.fetchByQuery, {
+          params: query,
+        })
+        const resData = response.data
+        this.productsList = resData.data.products
+      } catch (error) {
+        this.error = error
+      } finally {
+        this.loading = false
+      }
+    },
     async fetchProductById(id) {
       this.loading = true
       this.error = null
@@ -64,7 +79,7 @@ export const useProductsStore = defineStore("products", {
         )
         const resData = response.data
         this.productsList.push(resData.data.product)
-        this.currentProduct = null
+        this.clearCurrentProduct()
       } catch (error) {
         this.error = error
       } finally {
@@ -92,7 +107,6 @@ export const useProductsStore = defineStore("products", {
           (product) => product._id === _id
         )
         this.productsList[productInd] = resData.data.product
-        this.currentProduct = null
       } catch (error) {
         this.error = error
       } finally {
@@ -104,11 +118,17 @@ export const useProductsStore = defineStore("products", {
       this.error = null
       try {
         await axios.delete(apiEndpoints.products.deleteById, { data: { id } })
+        this.productsList = this.productsList.filter(
+          (product) => product._id !== id
+        )
       } catch (error) {
         this.error = error
       } finally {
         this.loading = false
       }
+    },
+    clearCurrentProduct() {
+      this.currentProduct = null
     },
   },
 })

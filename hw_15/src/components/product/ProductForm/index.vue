@@ -57,7 +57,7 @@
           locale="de-DE"
           placeholder="Ціна"
           size="large"
-          min="0"
+          :min="0"
           fluid
         />
         <Message
@@ -137,13 +137,13 @@ export default {
     }
   },
   computed: {
-    ...mapState(useProductsStore, ["currentProduct"]),
+    ...mapState(useProductsStore, ["currentProduct", "error"]),
     ...mapState(useCategoriesStore, ["categoriesList", "loading"]),
     btnTitle() {
       return this.currentProduct?._id ? "Зберегти" : "Створити"
     },
     initialData() {
-      if (!this.currentProduct) return null
+      if (!this.currentProduct) return { toDeleteImg: false }
       return {
         ...this.currentProduct,
         category: this.currentProduct.category._id,
@@ -152,22 +152,28 @@ export default {
     },
   },
   methods: {
-    ...mapActions(useProductsStore, ["createProduct", "updateProduct"]),
-    onSubmit(form) {
+    ...mapActions(useProductsStore, [
+      "createProduct",
+      "updateProduct",
+      "clearCurrentProduct",
+    ]),
+    async onSubmit(form) {
       if (!form.valid) return
       if (this.currentProduct?._id) {
-        this.updateProduct({
+        await this.updateProduct({
           ...form.values,
           _id: this.currentProduct._id,
           image: this.isNewImageSelected ? this.currentImage : undefined,
         })
       } else {
-        this.createProduct({
+        await this.createProduct({
           ...form.values,
           image: this.isNewImageSelected ? this.currentImage : undefined,
         })
       }
-      this.$router.push({ name: "productsList" })
+      if (!this.error) {
+        this.$router.push({ name: "productsList" })
+      }
     },
     async createFileFromImg(imgSrc) {
       if (!imgSrc) return
@@ -185,6 +191,14 @@ export default {
         if (newValue?.image) {
           this.currentImage = await this.createFileFromImg(newValue?.image)
         }
+      },
+    },
+    $route: {
+      deep: true,
+      handler() {
+        this.clearCurrentProduct()
+        this.isNewImageSelected = false
+        this.currentImage = null
       },
     },
   },

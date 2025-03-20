@@ -14,7 +14,7 @@
               <li class="nav-item" v-for="(item, i) in navItems" :key="i">
                 <router-link
                   :exact-active-class="item.activeClass"
-                  :to="{ name: item.routeName }"
+                  :to="{ name: item.routeName, params: item.params }"
                 >
                   {{ item.title }}
                 </router-link>
@@ -37,6 +37,16 @@ export default {
           routeName: "home",
           activeClass: "active",
           title: "Головна",
+        },
+        {
+          routeName: "productsList",
+          activeClass: "active",
+          title: "Продукти",
+        },
+        {
+          routeName: "productEdit",
+          activeClass: "active",
+          title: "Новий продукт",
         },
       ],
       homeworkNumber: 15,
