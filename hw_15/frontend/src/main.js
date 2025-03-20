@@ -10,7 +10,6 @@ import pinia from "./stores/index"
 import Aura from "@primeuix/themes/aura"
 import MainLayout from "./layouts/MainLayout.vue"
 import LoadingOverlay from "./components/general/LoadingOverlay.vue"
-import { root } from "postcss"
 const app = createApp(App)
 
 app.use(pinia)
