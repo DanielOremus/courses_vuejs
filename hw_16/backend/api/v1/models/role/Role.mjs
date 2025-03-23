@@ -30,7 +30,21 @@ const roleSchema = new mongoose.Schema({
   permissions: {
     products: {
       type: permissionsSchema,
-      default: {},
+      default: {
+        create: false,
+        read: true,
+        update: true,
+        delete: true,
+      },
+    },
+    profile: {
+      type: permissionsSchema,
+      default: {
+        create: false,
+        read: true,
+        update: true,
+        delete: true,
+      },
     },
   },
 })

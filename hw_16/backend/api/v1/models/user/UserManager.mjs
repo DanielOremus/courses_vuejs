@@ -4,8 +4,12 @@ import RoleManager from "../role/RoleManager.mjs"
 class UserManager extends MongooseCRUDManager {
   async create(userData) {
     try {
-      const defaultRole = await RoleManager.getOne({ name: "User" })
-      return await super.create({ userData, role: defaultRole._id })
+      let roleId = userData.role
+      if (!roleId) {
+        roleId = (await RoleManager.getOne({ name: "User" }))._id
+      }
+
+      return await super.create({ ...userData, role: roleId })
     } catch (error) {
       throw new Error("Error creating user: " + error.message)
     }
