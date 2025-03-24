@@ -8,7 +8,7 @@
           size="large"
           enter-key-hint="search"
           placeholder="Пошук"
-          v-model="filters.searchName"
+          v-model="filters.name"
         />
       </IconField>
     </div>
@@ -66,20 +66,14 @@
 <script>
 import { useCategoriesStore } from "@/stores/categories"
 import { useProductsStore } from "@/stores/products"
+import { useProductFilters } from "@/stores/productFilters"
 import { mapActions, mapState } from "pinia"
 export default {
   name: "FilterPanel",
-  data() {
-    return {
-      filters: {
-        price: [null, null],
-        searchName: null,
-        categories: [],
-      },
-    }
-  },
+
   computed: {
     ...mapState(useCategoriesStore, ["categoriesList", "loading"]),
+    ...mapState(useProductFilters, ["filters"]),
     ...mapState(useProductsStore, { productLoading: "loading" }),
     fromPrice() {
       return {
@@ -97,25 +91,9 @@ export default {
   methods: {
     ...mapActions(useCategoriesStore, ["fetchAllCategories"]),
     ...mapActions(useProductsStore, ["fetchProductsByQuery"]),
+    ...mapActions(useProductFilters, ["setFilterValues"]),
     onApplyFilters() {
-      if (!this.productLoading) {
-        const query = this.getReqQueryObj()
-        this.fetchProductsByQuery(query)
-      }
-    },
-    getReqQueryObj() {
-      return {
-        name: this.filters.searchName,
-        price: this.getPriceQuery(),
-        category: this.filters.categories?.join(","),
-      }
-    },
-    getPriceQuery() {
-      const [minPrice, maxPrice] = this.filters.price
-      if (minPrice && maxPrice) return `${minPrice}-${maxPrice}`
-      if (minPrice) return `gte:${minPrice}`
-      if (maxPrice) return `lte:${maxPrice}`
-      return null
+      this.fetchProductsByQuery()
     },
   },
   mounted() {

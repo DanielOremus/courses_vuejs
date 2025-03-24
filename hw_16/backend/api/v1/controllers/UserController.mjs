@@ -69,6 +69,27 @@ class UserController {
       res.status(500).json({ success: false, msg: error.message })
     }
   }
+  static async fetchOwnProfile(req, res) {
+    const id = req.user?._id
+    if (!id) {
+      return res.status(401).json({ success: false, msg: "Unauthorized" })
+    }
+    try {
+      const user = await UserManager.getById(id, { password: 0 }, ["role"])
+      if (!user)
+        return res
+          .status(404)
+          .json({ success: false, msg: "Profile not found" })
+      res.json({
+        success: true,
+        data: {
+          profile: user,
+        },
+      })
+    } catch (error) {
+      res.status(500).json({ success: false, msg: error.message })
+    }
+  }
 }
 
 export default UserController

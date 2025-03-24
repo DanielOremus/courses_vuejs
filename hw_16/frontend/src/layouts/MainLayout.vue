@@ -1,4 +1,5 @@
 <template>
+  <loading-overlay v-if="renderLoading" />
   <div class="main-layout flex-grow flex flex-col">
     <Header />
     <div class="content flex-grow">
@@ -8,11 +9,17 @@
 </template>
 
 <script>
-import Header from "@/components/sections/Header.vue"
+import Header from "@/components/sections/Header/index.vue"
 export default {
   name: "MainLayout",
   components: {
     Header,
+  },
+  props: {
+    renderLoading: {
+      type: Boolean,
+      default: false,
+    },
   },
 }
 </script>

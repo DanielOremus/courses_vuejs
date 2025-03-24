@@ -1,8 +1,9 @@
 // import { getDefaultModuleObj } from "./helpers/getCollectionModule"
 // export const useProductsStore = getDefaultModuleObj("products")
+import { useProductFilters } from "./productFilters"
 import he from "he"
 import apiEndpoints from "@/constants/apiEndpoints"
-import axios from "axios"
+import api from "@/config/axios"
 import { defineStore } from "pinia"
 import { packInFormData } from "./helpers"
 
@@ -18,7 +19,7 @@ export const useProductsStore = defineStore("products", {
       this.loading = true
       this.error = null
       try {
-        const response = await axios.get(apiEndpoints.products.fetchAll)
+        const response = await api.get(apiEndpoints.products.fetchAll)
         const resData = response.data
         this.productsList = resData.data.products
       } catch (error) {
@@ -27,12 +28,13 @@ export const useProductsStore = defineStore("products", {
         this.loading = false
       }
     },
-    async fetchProductsByQuery(query = {}) {
+    async fetchProductsByQuery() {
       this.loading = true
       this.error = null
+      const productFilters = useProductFilters()
       try {
-        const response = await axios.get(apiEndpoints.products.fetchByQuery, {
-          params: query,
+        const response = await api.get(apiEndpoints.products.fetchByQuery, {
+          params: productFilters.query,
         })
         const resData = response.data
         this.productsList = resData.data.products
@@ -46,7 +48,7 @@ export const useProductsStore = defineStore("products", {
       this.loading = true
       this.error = null
       try {
-        const response = await axios.get(apiEndpoints.products.fetchById(id))
+        const response = await api.get(apiEndpoints.products.fetchById(id))
         const resData = response.data
         const product = resData.data.product
         this.currentProduct = {
@@ -67,7 +69,7 @@ export const useProductsStore = defineStore("products", {
       const productFormData = packInFormData(productData)
 
       try {
-        const response = await axios.post(
+        const response = await api.post(
           apiEndpoints.products.create,
           productFormData,
           {
@@ -92,7 +94,7 @@ export const useProductsStore = defineStore("products", {
       const { _id } = productData
       const productFormData = packInFormData(productData)
       try {
-        const response = await axios.put(
+        const response = await api.put(
           apiEndpoints.products.updateById(_id),
           productFormData,
           {
@@ -116,7 +118,7 @@ export const useProductsStore = defineStore("products", {
       this.loading = true
       this.error = null
       try {
-        await axios.delete(apiEndpoints.products.deleteById, { data: { id } })
+        await api.delete(apiEndpoints.products.deleteById, { data: { id } })
         this.productsList = this.productsList.filter(
           (product) => product._id !== id
         )

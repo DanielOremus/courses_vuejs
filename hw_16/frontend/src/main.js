@@ -9,6 +9,7 @@ import router from "./router"
 import pinia from "./stores/index"
 import Aura from "@primeuix/themes/aura"
 import MainLayout from "./layouts/MainLayout.vue"
+import { useAuthStore } from "./stores/auth"
 import LoadingOverlay from "./components/general/LoadingOverlay.vue"
 const app = createApp(App)
 
@@ -47,4 +48,7 @@ app.use(PrimeVue, {
 app.component("main-layout", MainLayout)
 app.component("loading-overlay", LoadingOverlay)
 
+if (useAuthStore().jwtToken) {
+  useAuthStore().fetchProfileData()
+}
 app.mount("#app")

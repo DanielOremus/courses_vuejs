@@ -1,7 +1,6 @@
 <template>
-  <loading-overlay v-if="loading" />
-  <div class="form-container p-4">
-    <div class="form-wrapper md:w-2/3 lg:w-1/2 mx-auto my-[3rem]">
+  <div class="form-wrapper p-4">
+    <div class="form-container md:w-2/3 lg:w-1/2 mx-auto my-[3rem]">
       <product-form />
     </div>
   </div>
@@ -11,7 +10,7 @@
 import ProductForm from "@/components/product/ProductForm/index.vue"
 import { useCategoriesStore } from "@/stores/categories"
 import { useProductsStore } from "@/stores/products"
-import { mapActions, mapState } from "pinia"
+import { mapActions } from "pinia"
 export default {
   name: "ProductEditView",
   components: {
@@ -21,9 +20,6 @@ export default {
     id: {
       type: [String, Number],
     },
-  },
-  computed: {
-    ...mapState(useProductsStore, ["loading"]),
   },
   methods: {
     ...mapActions(useProductsStore, ["fetchProductById"]),

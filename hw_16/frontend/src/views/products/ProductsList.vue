@@ -1,5 +1,4 @@
 <template>
-  <loading-overlay v-if="loading" />
   <div class="page-wrapper my-[3rem] flex flex-col gap-8">
     <div class="panel-wrapper">
       <div class="panel-container">
@@ -15,16 +14,20 @@
 <script>
 import FilterPanel from "@/components/product/FilterPanel/index.vue"
 import ProductsList from "@/components/product/ProductsList/index.vue"
-import { useProductsStore } from "@/stores/products"
-import { mapState } from "pinia"
+import { useProductFilters } from "@/stores/productFilters"
+import { mapActions } from "pinia"
 export default {
   name: "ProductsListView",
   components: {
     ProductsList,
     FilterPanel,
   },
-  computed: {
-    ...mapState(useProductsStore, ["loading"]),
+
+  methods: {
+    ...mapActions(useProductFilters, ["resetFilters"]),
+  },
+  beforeRouteLeave() {
+    this.resetFilters()
   },
 }
 </script>

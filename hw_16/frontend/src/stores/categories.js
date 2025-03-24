@@ -1,5 +1,5 @@
 import apiEndpoints from "@/constants/apiEndpoints"
-import axios from "axios"
+import api from "@/config/axios"
 import { defineStore } from "pinia"
 
 export const useCategoriesStore = defineStore("categories", {
@@ -13,7 +13,7 @@ export const useCategoriesStore = defineStore("categories", {
       this.loading = true
       this.error = null
       try {
-        const response = await axios.get(apiEndpoints.categories.fetchAll)
+        const response = await api.get(apiEndpoints.categories.fetchAll)
         const resData = response.data
         this.categoriesList = resData.data.categories
       } catch (error) {

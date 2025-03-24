@@ -22,14 +22,21 @@
             </ul>
           </nav>
         </slot>
+        <div class="user-section flex items-center ml-20 text-xl">
+          <user-section />
+        </div>
       </div>
     </div>
   </header>
 </template>
 
 <script>
+import UserSection from "./UserSection.vue"
 export default {
   name: "Header",
+  components: {
+    UserSection,
+  },
   data() {
     return {
       navItems: [
@@ -49,7 +56,7 @@ export default {
           title: "Новий продукт",
         },
       ],
-      homeworkNumber: 15,
+      homeworkNumber: 16,
     }
   },
 }
