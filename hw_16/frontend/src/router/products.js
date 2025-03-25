@@ -21,12 +21,18 @@ export const productsRoutes = [
         path: "list",
         name: "productsList",
         component: () => import("@/views/products/ProductsList.vue"),
+        meta: {
+          requiresAuth: false,
+        },
       },
       {
         path: "edit/:id?",
         name: "productEdit",
         props: true,
         component: () => import("@/views/products/ProductEdit.vue"),
+        meta: {
+          requiresAuth: true,
+        },
         beforeEnter: async (to, from) => {
           if (!to.params.id) return true
           const { exists, error } = await checkIfProductExists(to, from)
@@ -46,6 +52,9 @@ export const productsRoutes = [
         name: "productDetails",
         props: true,
         component: () => import("@/views/products/ProductDetails.vue"),
+        meta: {
+          requiresAuth: false,
+        },
         beforeEnter: async (to, from) => {
           const { exists, error } = await checkIfProductExists(to, from)
           if (!exists) {

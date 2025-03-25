@@ -6,7 +6,9 @@
     :validate-on-value-update="false"
     @submit="onSubmit"
   >
-    <h1 class="text-3xl text-center font-semibold text-slate-200">Вхід</h1>
+    <Divider :pt="{ content: 'bg-[var(--form-background-color)]' }">
+      <h1 class="text-3xl text-center font-semibold text-slate-200">Вхід</h1>
+    </Divider>
     <div class="flex flex-col gap-1">
       <InputText name="email" placeholder="Ел. пошта" size="large" fluid />
       <Message
@@ -26,7 +28,11 @@
         variant="simple"
         >{{ $credentials.password.error?.message }}</Message
       >
+      <router-link class="register-link" :to="{ name: 'register' }"
+        >Нема облікового запису?</router-link
+      >
     </div>
+
     <Button>Ввійти</Button>
   </Form>
 </template>
@@ -42,4 +48,8 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="css" scoped>
+.register-link {
+  @apply text-slate-400 text-sm hover:underline hover:cursor-pointer w-fit;
+}
+</style>

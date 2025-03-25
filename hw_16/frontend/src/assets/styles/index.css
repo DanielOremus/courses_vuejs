@@ -4,6 +4,7 @@
   @tailwind base;
   :root {
     --header-height: 80px;
+    --form-background-color: rgb(10, 10, 10);
   }
 }
 

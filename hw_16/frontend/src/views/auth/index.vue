@@ -21,7 +21,7 @@ export default {
 
 <style lang="css" scoped>
 .form-container {
-  @apply bg-neutral-950 py-8 px-10 rounded-xl w-5/6 sm:w-2/3 md:w-1/2 xl:w-1/3 mx-auto;
+  @apply bg-[var(--form-background-color)] py-8 px-10 rounded-xl w-5/6 sm:w-2/3 md:w-1/2 xl:w-1/3 mx-auto;
 }
 .form-wrapper {
   @apply my-[3rem];

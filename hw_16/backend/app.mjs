@@ -9,7 +9,6 @@ connectDB()
 
 //App Init
 init(app)
-
 //Adding routes
 app.use("/v1", routes)
 
