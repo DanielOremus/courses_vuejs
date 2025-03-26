@@ -40,7 +40,6 @@ class AuthValidator {
       },
     },
     password: {
-      trim: true,
       notEmpty: {
         errorMessage: "Password is required",
         bail: true,
@@ -60,9 +59,12 @@ class AuthValidator {
       notEmpty: {
         errorMessage: "Email is required",
       },
+      isEmail: {
+        errorMessage: "Invalid email format",
+        bail: true,
+      },
     },
     password: {
-      trim: true,
       notEmpty: {
         errorMessage: "Password is required",
       },

@@ -1,9 +1,6 @@
-import { useAuthStore } from "@/stores/auth"
-
-const redirectIfHasToken = (to, from) => {
-  if (!!useAuthStore().jwtToken) {
-    return { name: "home" }
-  }
+import { isAuthenticated } from "./helpers"
+const redirectIfAuthenticated = () => {
+  if (isAuthenticated()) return { name: "home" }
 }
 
 export const authRoutes = [
@@ -11,19 +8,18 @@ export const authRoutes = [
     path: "/auth",
     redirect: { name: "login" },
     component: () => import("@/views/auth/index.vue"),
-
     children: [
       {
         path: "login",
         name: "login",
         component: () => import("@/components/auth/LoginForm.vue"),
-        beforeEnter: redirectIfHasToken,
+        beforeEnter: redirectIfAuthenticated,
       },
       {
         path: "register",
         name: "register",
         component: () => import("@/components/auth/RegisterForm.vue"),
-        beforeEnter: redirectIfHasToken,
+        beforeEnter: redirectIfAuthenticated,
       },
     ],
   },

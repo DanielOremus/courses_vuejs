@@ -1,0 +1,56 @@
+{
+  "buttons": {
+    "create": "Створити",
+    "save": "Зберегти",
+    "edit": "Редагувати",
+    "delete": "Видалити",
+    "back": "Назад",
+    "login": "Вхід"
+  },
+  "currencies": {
+    "uah": "грн."
+  },
+  "categories": {
+    "fruits": "Фрукти",
+    "diary": "Молочні",
+    "vegetables": "Овочі",
+    "meat": "М'ясо"
+  },
+  "pages": {
+    "home": {
+      "title": {
+        "menu": "Головна"
+      },
+      "messages": {
+        "welcome": "Вітаємо вас на нашому сайті!"
+      }
+    },
+
+    "productsList": {
+      "title": {
+        "menu": "Продукти"
+      }
+    },
+    "productEdit": {
+      "title": {
+        "menu": "Створити продукт"
+      }
+    },
+    "login": {
+      "title": {
+        "form": "Вхід"
+      },
+      "buttons": {
+        "signin": "Ввійти"
+      }
+    },
+    "register": {
+      "title": {
+        "form": "Реєстрація"
+      },
+      "buttons": {
+        "signin": "Зареєструватись"
+      }
+    }
+  }
+}

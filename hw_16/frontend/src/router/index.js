@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from "vue-router"
 import { mainRoutes } from "./main"
 import { productsRoutes } from "./products"
 import { authRoutes } from "./auth"
+import { isAuthenticated, isRouteAvailable } from "./helpers"
 const routes = [
   ...mainRoutes,
   ...productsRoutes,
@@ -18,4 +19,11 @@ const router = createRouter({
   routes,
 })
 
-export default router
+router.beforeEach((to) => {
+  if (to.meta?.requiresAuth) {
+    if (!isAuthenticated()) return { name: "login" }
+    if (!isRouteAvailable(to)) return { name: "notFound" }
+  }
+})
+
+export { router, routes }

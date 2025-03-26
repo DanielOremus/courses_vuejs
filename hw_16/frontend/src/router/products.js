@@ -14,24 +14,28 @@ export const productsRoutes = [
   {
     path: "/products",
     name: "products",
-    component: () => import("@/views/products/index.vue"),
+    component: () => import("@/views/products/ProductsView.vue"),
     redirect: { name: "productsList" },
     children: [
       {
         path: "list",
         name: "productsList",
-        component: () => import("@/views/products/ProductsList.vue"),
+        component: () => import("@/views/products/ProductsListView.vue"),
         meta: {
           requiresAuth: false,
+          useInMenu: true,
         },
       },
       {
         path: "edit/:id?",
         name: "productEdit",
         props: true,
-        component: () => import("@/views/products/ProductEdit.vue"),
+        component: () => import("@/views/products/ProductEditView.vue"),
         meta: {
           requiresAuth: true,
+          useInMenu: true,
+          hasAccess: (permissions) =>
+            permissions?.products.create || permissions?.products.update,
         },
         beforeEnter: async (to, from) => {
           if (!to.params.id) return true
@@ -51,7 +55,7 @@ export const productsRoutes = [
         path: ":id",
         name: "productDetails",
         props: true,
-        component: () => import("@/views/products/ProductDetails.vue"),
+        component: () => import("@/views/products/ProductDetailsView.vue"),
         meta: {
           requiresAuth: false,
         },

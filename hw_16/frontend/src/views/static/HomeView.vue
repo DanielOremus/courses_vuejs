@@ -2,7 +2,7 @@
   <main-layout>
     <hero-carousel />
     <p class="absolute w-full text-2xl text-slate-300 text-center top-1/3">
-      Вітаємо на нашому сайті!
+      {{ $t("pages.home.messages.welcome") }}
     </p>
   </main-layout>
 </template>

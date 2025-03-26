@@ -1,5 +1,5 @@
 <template>
-  <div class="page-wrapper my-[3rem] flex flex-col gap-8">
+  <div class="my-[3rem] flex flex-col gap-8">
     <div class="panel-wrapper">
       <div class="panel-container">
         <filter-panel />

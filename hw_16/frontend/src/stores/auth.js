@@ -11,6 +11,7 @@ export const useAuthStore = defineStore("auth", {
   getters: {
     isAuthenticated: (state) => !!state.user,
     jwtToken: () => localStorage.getItem("jwt"),
+    userPermissions: (state) => state.user?.role.permissions ?? null,
   },
   actions: {
     async fetchProfileData() {
@@ -25,8 +26,10 @@ export const useAuthStore = defineStore("auth", {
       }
     },
     async signIn(credentials) {
-      let type = credentials.type ?? "register"
+      this.loading = true
+      this.error = null
 
+      let type = credentials.type ?? "register"
       const url =
         type === "login" ? apiEndpoints.auth.login : apiEndpoints.auth.register
 
@@ -40,6 +43,10 @@ export const useAuthStore = defineStore("auth", {
       } finally {
         this.loading = false
       }
+    },
+    logout() {
+      this.user = null
+      localStorage.removeItem("jwt")
     },
   },
 })

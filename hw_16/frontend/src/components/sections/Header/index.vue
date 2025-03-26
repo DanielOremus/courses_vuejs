@@ -2,28 +2,18 @@
   <header class="header sticky top-0 z-10">
     <div class="navigation-wrapper">
       <div class="navigation-container">
-        <slot>
-          <router-link :to="{ name: 'home' }">
-            <div class="homework-data">
-              <span class="homework-number">Homework {{ homeworkNumber }}</span>
-              <span class="author text-primary">by Daniel Oremus</span>
-            </div>
-          </router-link>
-          <nav class="main-navigation grow text-xl">
-            <ul class="nav-links">
-              <li class="nav-item" v-for="(item, i) in navItems" :key="i">
-                <router-link
-                  :exact-active-class="item.activeClass"
-                  :to="{ name: item.routeName, params: item.params }"
-                >
-                  {{ item.title }}
-                </router-link>
-              </li>
-            </ul>
-          </nav>
-        </slot>
-        <div class="user-section flex items-center ml-20 text-xl">
+        <router-link :to="{ name: 'home' }">
+          <div class="homework-data">
+            <span class="homework-number">Homework {{ homeworkNumber }}</span>
+            <span class="author text-primary">by Daniel Oremus</span>
+          </div>
+        </router-link>
+        <nav class="main-navigation grow text-xl">
+          <nav-links />
+        </nav>
+        <div class="flex items-center gap-8 ml-20 text-xl">
           <user-section />
+          <language-section />
         </div>
       </div>
     </div>
@@ -31,31 +21,18 @@
 </template>
 
 <script>
-import UserSection from "./UserSection.vue"
+import NavLinks from "./components/NavLinks.vue"
+import UserSection from "./components/UserSection.vue"
+import LanguageSection from "./components/LanguageSection.vue"
 export default {
   name: "Header",
   components: {
     UserSection,
+    NavLinks,
+    LanguageSection,
   },
   data() {
     return {
-      navItems: [
-        {
-          routeName: "home",
-          activeClass: "active",
-          title: "Головна",
-        },
-        {
-          routeName: "productsList",
-          activeClass: "active",
-          title: "Продукти",
-        },
-        {
-          routeName: "productEdit",
-          activeClass: "active",
-          title: "Новий продукт",
-        },
-      ],
       homeworkNumber: 16,
     }
   },

@@ -1,14 +1,14 @@
 <template>
   <Form
     v-slot="$credentials"
-    class="flex flex-col gap-6"
+    class="flex flex-col gap-4"
     :validate-on-submit="true"
     :validate-on-value-update="false"
     @submit="onSubmit"
   >
     <Divider :pt="{ content: 'bg-[var(--form-background-color)]' }">
       <h1 class="text-3xl text-center font-semibold text-slate-200">
-        Реєстрація
+        {{ $t(`pages.register.title.form`) }}
       </h1>
     </Divider>
     <div class="flex flex-col gap-1">
@@ -45,7 +45,9 @@
       >
     </div>
 
-    <Button>Зареєструватись</Button>
+    <Button type="submit">
+      {{ $t(`pages.register.buttons.signin`) }}
+    </Button>
   </Form>
 </template>
 
@@ -54,7 +56,7 @@ export default {
   name: "LoginForm",
   methods: {
     onSubmit(form) {
-      console.log(form.values)
+      console.log(form)
     },
   },
 }

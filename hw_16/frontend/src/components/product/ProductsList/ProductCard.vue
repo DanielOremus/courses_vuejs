@@ -8,21 +8,34 @@
     </div>
     <div class="flex flex-col">
       <span class="text-2xl font-medium">{{ product.name }}</span>
-      <span class="text-md text-slate-400">{{ product.category.name }}</span>
+      <span class="text-md text-slate-400">{{
+        $t(`categories.${product.category.value}`)
+      }}</span>
     </div>
     <div class="flex justify-between">
-      <span class="text-slate-300 text-xl">{{ product.price }} грн.</span>
+      <span class="text-slate-300 text-xl"
+        >{{ product.price }} {{ $t("currencies.uah") }}</span
+      >
       <div class="actions">
-        <router-link :to="{ name: 'productEdit', params: { id: product._id } }">
+        <router-link
+          v-if="userPermissions?.products.update"
+          :to="{ name: 'productEdit', params: { id: product._id } }"
+        >
           <i class="edit-icon pi pi-pencil"></i>
         </router-link>
-        <i class="delete-icon pi pi-trash" @click="onDelete(product._id)"></i>
+        <i
+          v-if="userPermissions?.products.delete"
+          class="delete-icon pi pi-trash"
+          @click="onDelete(product._id)"
+        ></i>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import { useAuthStore } from "@/stores/auth"
+import { mapState } from "pinia"
 import noImage from "@/assets/images/no-image.jpg"
 export default {
   name: "ProductCard",
@@ -37,6 +50,9 @@ export default {
     return {
       noImage,
     }
+  },
+  computed: {
+    ...mapState(useAuthStore, ["userPermissions"]),
   },
   methods: {
     onDelete(productId) {

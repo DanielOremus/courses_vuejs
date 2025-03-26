@@ -1,0 +1,55 @@
+{
+  "buttons": {
+    "create": "Create",
+    "save": "Зберегти",
+    "edit": "Редагувати",
+    "delete": "Delete",
+    "back": "Go back",
+    "login": "Login"
+  },
+  "currencies": {
+    "uah": "UAH"
+  },
+  "categories": {
+    "fruits": "Fruits",
+    "diary": "Diary",
+    "vegetables": "Vegetables",
+    "meat": "Meat"
+  },
+  "pages": {
+    "home": {
+      "title": {
+        "menu": "Home"
+      },
+      "messages": {
+        "welcome": "Welcome to our site!"
+      }
+    },
+    "productsList": {
+      "title": {
+        "menu": "Products"
+      }
+    },
+    "productEdit": {
+      "title": {
+        "menu": "Create product"
+      }
+    },
+    "login": {
+      "title": {
+        "form": "Log in"
+      },
+      "buttons": {
+        "signin": "Log in"
+      }
+    },
+    "register": {
+      "title": {
+        "form": "Register"
+      },
+      "buttons": {
+        "signin": "Register"
+      }
+    }
+  }
+}

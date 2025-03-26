@@ -4,5 +4,8 @@ export const mainRoutes = [
     path: "/",
     name: "home",
     component: HomeView,
+    meta: {
+      useInMenu: true,
+    },
   },
 ]
