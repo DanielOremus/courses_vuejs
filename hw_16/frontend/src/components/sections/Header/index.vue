@@ -41,7 +41,7 @@ export default {
 
 <style lang="css" scoped>
 .navigation-container {
-  @apply flex justify-between px-40 border-b-2 border-b-primary bg-surface-900 whitespace-nowrap;
+  @apply flex justify-between border-b-2 px-2 md:px-[5rem] xl:px-[10rem] border-b-primary bg-surface-900 whitespace-nowrap;
   height: var(--header-height);
 }
 .homework-data {

@@ -48,5 +48,8 @@ export const useAuthStore = defineStore("auth", {
       this.user = null
       localStorage.removeItem("jwt")
     },
+    clearError() {
+      this.error = null
+    },
   },
 })

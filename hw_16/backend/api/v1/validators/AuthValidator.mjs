@@ -47,9 +47,9 @@ class AuthValidator {
       isLength: {
         options: {
           min: 3,
-          max: 100,
+          max: 50,
         },
-        errorMessage: "Password must be between 3 and 100 chars",
+        errorMessage: "Password must be between 3 and 50 chars",
       },
     },
   }

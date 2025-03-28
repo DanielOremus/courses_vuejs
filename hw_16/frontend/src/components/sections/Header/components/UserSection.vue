@@ -5,7 +5,7 @@
       <i class="logout-icon pi pi-sign-out" @click="onLogout" />
     </span>
     <router-link v-else :to="{ name: 'login' }" active-class="active">{{
-      $t("buttons.login")
+      $t("pages.login.title.menu")
     }}</router-link>
   </div>
 </template>

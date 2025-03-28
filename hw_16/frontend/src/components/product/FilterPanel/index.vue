@@ -7,7 +7,7 @@
           class="w-full"
           size="large"
           enter-key-hint="search"
-          placeholder="Пошук"
+          :placeholder="$t('pages.productsList.fields.search')"
           v-model="filters.name"
         />
       </IconField>
@@ -26,9 +26,9 @@
         name="category"
         :options="categoriesList"
         :loading="loading"
-        option-label="name"
+        :option-label="getTranslatedCategory"
         option-value="_id"
-        placeholder="Категорія"
+        :placeholder="$t('pages.productsList.fields.category')"
         size="large"
         :show-toggle-all="false"
         :show-clear="true"
@@ -39,7 +39,7 @@
     </div>
     <div class="price-fields">
       <InputText
-        placeholder="Від"
+        :placeholder="$t('pages.productsList.fields.from')"
         size="large"
         type="number"
         :min="fromPrice.min"
@@ -48,7 +48,7 @@
         v-model.number="filters.price[0]"
       />
       <InputText
-        placeholder="До"
+        :placeholder="$t('pages.productsList.fields.to')"
         size="large"
         type="number"
         :min="toPrice.min"
@@ -94,6 +94,9 @@ export default {
     ...mapActions(useProductFilters, ["setFilterValues"]),
     onApplyFilters() {
       this.fetchProductsByQuery()
+    },
+    getTranslatedCategory(category) {
+      return this.$t(`categories.${category.value}`)
     },
   },
   mounted() {

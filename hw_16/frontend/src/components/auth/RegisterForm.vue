@@ -4,6 +4,7 @@
     class="flex flex-col gap-4"
     :validate-on-submit="true"
     :validate-on-value-update="false"
+    :resolver="validator"
     @submit="onSubmit"
   >
     <Divider :pt="{ content: 'bg-[var(--form-background-color)]' }">
@@ -44,7 +45,9 @@
         >Вже маєте обліковий запис?</router-link
       >
     </div>
-
+    <Message v-if="error" size="small" variant="simple" severity="error">
+      {{ errorMessage }}
+    </Message>
     <Button type="submit">
       {{ $t(`pages.register.buttons.signin`) }}
     </Button>
@@ -52,11 +55,37 @@
 </template>
 
 <script>
+import { useAuthStore } from "@/stores/auth"
+import { mapActions, mapState } from "pinia"
+import { yupResolver } from "@primevue/forms/resolvers/yup"
+import { registerFormSchema } from "@/validators/auth"
 export default {
   name: "LoginForm",
+  data() {
+    return {
+      validator: yupResolver(registerFormSchema),
+    }
+  },
+  computed: {
+    ...mapState(useAuthStore, ["error"]),
+    errorMessage() {
+      const errorStatus = this.error?.response.request.status
+      if (!this.error || errorStatus !== 400) return null
+      const resMsg = this.error?.response.data.msg
+      if (typeof resMsg !== "string") {
+        return Array.isArray(resMsg) ? resMsg[0].msg : resMsg.msg
+      }
+      return this.error?.response.data.msg
+    },
+  },
   methods: {
-    onSubmit(form) {
-      console.log(form)
+    ...mapActions(useAuthStore, ["signIn"]),
+    async onSubmit(form) {
+      if (!form.valid) return
+      await this.signIn({ ...form.values, type: "register" })
+      if (!this.error) this.$router.push({ name: "home" })
+
+      //TODO: add error render
     },
   },
 }

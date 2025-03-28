@@ -10,11 +10,19 @@
 
 <script>
 import { useAuthStore } from "@/stores/auth"
-import { mapState } from "pinia"
+import { mapState, mapActions } from "pinia"
 export default {
   name: "AuthView",
   computed: {
-    ...mapState(useAuthStore, ["loading"]),
+    ...mapState(useAuthStore, ["loading", "error"]),
+  },
+  methods: {
+    ...mapActions(useAuthStore, ["clearError"]),
+  },
+  watch: {
+    "$route.name"() {
+      this.clearError()
+    },
   },
 }
 </script>

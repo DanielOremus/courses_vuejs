@@ -15,14 +15,15 @@ import LoadingOverlay from "./components/general/LoadingOverlay.vue"
 const app = createApp(App)
 
 app.use(pinia)
-app.use(router)
 app.use(i18n)
 app.use(PrimeVue, themeOptions)
-
+app.use(router)
 app.component("main-layout", MainLayout)
 app.component("loading-overlay", LoadingOverlay)
 
-if (useAuthStore().jwtToken) {
-  useAuthStore().fetchProfileData()
+const authStore = useAuthStore()
+
+if (authStore.jwtToken) {
+  authStore.fetchProfileData()
 }
 app.mount("#app")

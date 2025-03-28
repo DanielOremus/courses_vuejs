@@ -13,7 +13,7 @@
       <label
         class="flex cursor-pointer items-center text-lg text-slate-400 gap-4"
       >
-        {{ $t("pages.productEdit.messages.form.deleteImage") }}
+        {{ $t("pages.productEdit.fields.deleteImage") }}
         <ToggleSwitch name="toDeleteImg" />
       </label>
     </div>
@@ -21,7 +21,7 @@
       <div class="flex flex-col gap-1 basis-1/2">
         <InputText
           name="name"
-          :placeholder="$t('pages.productEdit.messages.form.name')"
+          :placeholder="$t('pages.productEdit.fields.name')"
           size="large"
           fluid
         />
@@ -38,12 +38,13 @@
           name="category"
           :options="categoriesList"
           :loading="loading"
-          :option-label="name"
+          :option-label="getTranslatedCategory"
           option-value="_id"
-          :placeholder="$t('pages.productEdit.messages.form.category')"
+          :placeholder="$t('pages.productEdit.fields.category')"
           size="large"
           fluid
-        />
+        >
+        </Select>
         <Message
           v-if="$product.category?.invalid"
           severity="error"
@@ -60,7 +61,7 @@
           mode="currency"
           currency="UAH"
           locale="de-DE"
-          :placeholder="$t('pages.productEdit.messages.form.price')"
+          :placeholder="$t('pages.productEdit.fields.price')"
           size="large"
           :min="0"
           fluid
@@ -77,7 +78,7 @@
         <InputText
           name="mass"
           type="number"
-          :placeholder="$t('pages.productEdit.messages.form.mass')"
+          :placeholder="$t('pages.productEdit.fields.mass')"
           size="large"
           fluid
         />
@@ -96,7 +97,7 @@
         rows="5"
         class="resize-none"
         size="large"
-        :placeholder="$t('pages.productEdit.messages.form.description')"
+        :placeholder="$t('pages.productEdit.fields.description')"
         fluid
       ></Textarea>
       <Message
@@ -111,7 +112,7 @@
       name="image"
       v-model="currentImage"
       @select="onNewFileSelected"
-      :caption="$t('pages.productEdit.messages.form.image')"
+      :caption="$t('pages.productEdit.fields.image')"
     />
     <div class="row">
       <Button class="basis-1/2" severity="secondary" @click="onBack">{{
@@ -200,6 +201,9 @@ export default {
       this.clearCurrentProduct()
       this.isNewImageSelected = false
       this.currentImage = null
+    },
+    getTranslatedCategory(category) {
+      return this.$t(`categories.${category.value}`)
     },
   },
   watch: {

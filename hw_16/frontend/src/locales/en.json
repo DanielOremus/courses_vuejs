@@ -5,7 +5,6 @@
     "edit": "Edit",
     "delete": "Delete",
     "back": "Go back",
-    "login": "Login",
     "browse": "Browse",
     "clear": "Clear",
     "apply": "Apply"
@@ -31,27 +30,33 @@
     "productsList": {
       "title": {
         "menu": "Products"
+      },
+
+      "fields": {
+        "search": "Search",
+        "category": "Category",
+        "from": "From",
+        "to": "To"
       }
     },
     "productEdit": {
       "title": {
         "menu": "Create product"
       },
-      "messages": {
-        "form": {
-          "name": "Product name",
-          "category": "Category",
-          "price": "Price",
-          "mass": "Mass",
-          "description": "Description (optional)",
-          "image": "Drag and drop image to upload",
-          "deleteImage": "Delete image"
-        }
+      "fields": {
+        "name": "Product name",
+        "category": "Category",
+        "price": "Price",
+        "mass": "Mass",
+        "description": "Description (optional)",
+        "image": "Drag and drop image to upload",
+        "deleteImage": "Delete image"
       }
     },
     "login": {
       "title": {
-        "form": "Log in"
+        "form": "Log in",
+        "menu": "Login"
       },
       "buttons": {
         "signin": "Log in"
@@ -59,7 +64,8 @@
     },
     "register": {
       "title": {
-        "form": "Register"
+        "form": "Register",
+        "menu": "Sign Up"
       },
       "buttons": {
         "signin": "Register"
