@@ -58,7 +58,7 @@
       />
     </div>
     <div class="apply-btn">
-      <Button @click="onApplyFilters" fluid>Застосувати</Button>
+      <Button @click="onApplyFilters" fluid>{{ $t("buttons.apply") }}</Button>
     </div>
   </div>
 </template>

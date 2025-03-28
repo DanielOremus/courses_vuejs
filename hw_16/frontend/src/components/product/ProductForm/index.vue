@@ -13,13 +13,18 @@
       <label
         class="flex cursor-pointer items-center text-lg text-slate-400 gap-4"
       >
-        Видалити зображення
+        {{ $t("pages.productEdit.messages.form.deleteImage") }}
         <ToggleSwitch name="toDeleteImg" />
       </label>
     </div>
     <div class="row">
       <div class="flex flex-col gap-1 basis-1/2">
-        <InputText name="name" placeholder="Назва" size="large" fluid />
+        <InputText
+          name="name"
+          :placeholder="$t('pages.productEdit.messages.form.name')"
+          size="large"
+          fluid
+        />
         <Message
           v-if="$product.name?.invalid"
           severity="error"
@@ -33,9 +38,9 @@
           name="category"
           :options="categoriesList"
           :loading="loading"
-          option-label="name"
+          :option-label="name"
           option-value="_id"
-          placeholder="Категорія"
+          :placeholder="$t('pages.productEdit.messages.form.category')"
           size="large"
           fluid
         />
@@ -55,7 +60,7 @@
           mode="currency"
           currency="UAH"
           locale="de-DE"
-          placeholder="Ціна"
+          :placeholder="$t('pages.productEdit.messages.form.price')"
           size="large"
           :min="0"
           fluid
@@ -72,7 +77,7 @@
         <InputText
           name="mass"
           type="number"
-          placeholder="Маса"
+          :placeholder="$t('pages.productEdit.messages.form.mass')"
           size="large"
           fluid
         />
@@ -91,7 +96,7 @@
         rows="5"
         class="resize-none"
         size="large"
-        placeholder="Опис (необов'язково)"
+        :placeholder="$t('pages.productEdit.messages.form.description')"
         fluid
       ></Textarea>
       <Message
@@ -106,11 +111,12 @@
       name="image"
       v-model="currentImage"
       @select="onNewFileSelected"
+      :caption="$t('pages.productEdit.messages.form.image')"
     />
     <div class="row">
-      <Button class="basis-1/2" severity="secondary" @click="onBack"
-        >Назад</Button
-      >
+      <Button class="basis-1/2" severity="secondary" @click="onBack">{{
+        $t("buttons.back")
+      }}</Button>
       <Button type="submit" class="basis-1/2" severity="secondary">{{
         btnTitle
       }}</Button>
@@ -141,7 +147,9 @@ export default {
     ...mapState(useProductsStore, ["currentProduct", "error"]),
     ...mapState(useCategoriesStore, ["categoriesList", "loading"]),
     btnTitle() {
-      return this.currentProduct?._id ? "Зберегти" : "Створити"
+      return this.currentProduct?._id
+        ? this.$t("buttons.save")
+        : this.$t("buttons.create")
     },
     initialData() {
       if (!this.currentProduct) return { toDeleteImg: false }

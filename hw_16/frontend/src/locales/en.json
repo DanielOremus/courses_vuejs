@@ -1,11 +1,14 @@
 {
   "buttons": {
     "create": "Create",
-    "save": "Зберегти",
-    "edit": "Редагувати",
+    "save": "Save",
+    "edit": "Edit",
     "delete": "Delete",
     "back": "Go back",
-    "login": "Login"
+    "login": "Login",
+    "browse": "Browse",
+    "clear": "Clear",
+    "apply": "Apply"
   },
   "currencies": {
     "uah": "UAH"
@@ -33,6 +36,17 @@
     "productEdit": {
       "title": {
         "menu": "Create product"
+      },
+      "messages": {
+        "form": {
+          "name": "Product name",
+          "category": "Category",
+          "price": "Price",
+          "mass": "Mass",
+          "description": "Description (optional)",
+          "image": "Drag and drop image to upload",
+          "deleteImage": "Delete image"
+        }
       }
     },
     "login": {
