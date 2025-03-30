@@ -13,7 +13,12 @@
       </h1>
     </Divider>
     <div class="flex flex-col gap-1">
-      <InputText name="email" placeholder="Ел. пошта" size="large" fluid />
+      <InputText
+        name="email"
+        :placeholder="$t('pages.auth.fields.email')"
+        size="large"
+        fluid
+      />
       <Message
         v-if="$credentials.email?.invalid"
         severity="error"
@@ -26,7 +31,7 @@
       <InputText
         name="password"
         type="password"
-        placeholder="Пароль"
+        :placeholder="$t('pages.auth.fields.password')"
         size="large"
         fluid
       />
@@ -37,9 +42,9 @@
         variant="simple"
         >{{ $credentials.password.error?.message }}</Message
       >
-      <router-link class="register-link" :to="{ name: 'register' }"
-        >Нема облікового запису?</router-link
-      >
+      <router-link class="register-link" :to="{ name: 'register' }">
+        {{ $t(`pages.login.messages.noAccountYet`) }}
+      </router-link>
     </div>
     <Message v-if="error" size="small" variant="simple" severity="error">
       {{ errorMessage }}

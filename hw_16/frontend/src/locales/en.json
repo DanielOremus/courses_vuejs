@@ -53,10 +53,20 @@
         "deleteImage": "Delete image"
       }
     },
+    "auth": {
+      "fields": {
+        "email": "Email",
+        "name": "Username",
+        "password": "Password"
+      }
+    },
     "login": {
       "title": {
         "form": "Log in",
         "menu": "Login"
+      },
+      "messages": {
+        "noAccountYet": "Don't have an account?"
       },
       "buttons": {
         "signin": "Log in"
@@ -64,8 +74,11 @@
     },
     "register": {
       "title": {
-        "form": "Register",
+        "form": "Registration",
         "menu": "Sign Up"
+      },
+      "messages": {
+        "alreadyHasAccount": "Already have an account?"
       },
       "buttons": {
         "signin": "Register"

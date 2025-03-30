@@ -13,7 +13,12 @@
       </h1>
     </Divider>
     <div class="flex flex-col gap-1">
-      <InputText name="email" placeholder="Ел. пошта" size="large" fluid />
+      <InputText
+        name="email"
+        :placeholder="$t('pages.auth.fields.email')"
+        size="large"
+        fluid
+      />
       <Message
         v-if="$credentials.email?.invalid"
         severity="error"
@@ -23,7 +28,12 @@
       >
     </div>
     <div class="flex flex-col gap-1">
-      <InputText name="name" placeholder="Ім'я" size="large" fluid />
+      <InputText
+        name="name"
+        :placeholder="$t('pages.auth.fields.name')"
+        size="large"
+        fluid
+      />
       <Message
         v-if="$credentials.name?.invalid"
         severity="error"
@@ -33,7 +43,12 @@
       >
     </div>
     <div class="flex flex-col gap-1">
-      <InputText name="password" placeholder="Пароль" size="large" fluid />
+      <InputText
+        name="password"
+        :placeholder="$t('pages.auth.fields.password')"
+        size="large"
+        fluid
+      />
       <Message
         v-if="$credentials.password?.invalid"
         severity="error"
@@ -41,9 +56,9 @@
         variant="simple"
         >{{ $credentials.password.error?.message }}</Message
       >
-      <router-link class="login-link" :to="{ name: 'login' }"
-        >Вже маєте обліковий запис?</router-link
-      >
+      <router-link class="login-link" :to="{ name: 'login' }">
+        {{ $t(`pages.register.messages.alreadyHasAccount`) }}
+      </router-link>
     </div>
     <Message v-if="error" size="small" variant="simple" severity="error">
       {{ errorMessage }}

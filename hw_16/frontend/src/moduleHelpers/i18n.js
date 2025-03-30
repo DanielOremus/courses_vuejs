@@ -12,7 +12,7 @@ export const useLocales = () => {
   const checkLocale = () => {
     const lastLocale = localStorage.getItem("lastLocale")
     if (lastLocale && lastLocale !== locale.value) {
-      setLocale(locale.value)
+      setLocale(lastLocale)
       useRouter().go()
     }
   }
