@@ -1,0 +1,24 @@
+@layer tailwind-base, primevue, tailwind-utilities;
+
+@layer tailwind-base {
+  @tailwind base;
+  :root {
+    --header-height: 80px;
+  }
+}
+
+@layer tailwind-utilities {
+  @tailwind components;
+  @tailwind utilities;
+  a {
+    @apply hover:text-primary transition-colors duration-100;
+  }
+  .active {
+    @apply text-primary;
+  }
+  #app {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+}
